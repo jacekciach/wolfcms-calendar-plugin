@@ -1,0 +1,8 @@
+1. Copy plugins/calendar/ to wolf/plugins/
+2. Copy public/css/calendar.css to, for example public/themes/calendar/calendar.css
+3. Insert to your layout (change the path, if needed):
+
+   <link rel="stylesheet" href="<?php echo THEMES_PATH; ?>calendar/calendar.css" type="text/css">
+
+4. Enable the plugin in the Administration Panel.
+5. Works!
