@@ -19,8 +19,6 @@ class Calendar {
     public function __construct(&$page, $params) {
         $this->page   = & $page;
         $this->params = $params;
-
-
         
         switch (count($params)) {
           case 0:
@@ -40,10 +38,10 @@ class Calendar {
                 pageNotFound();
                 exit();
               }                          
-              $events = Calendar::getEventsByDate($datetime->format('Y-m-d'));
+              $events = CalendarEvent::findEventsByDate($datetime->format('Y-m-d'));
               $this->page->title = strftime("%x", $datetime->getTimestamp()); /* The date should be localized */
               $this->beginCapture();
-              Calendar::showEventsContent($events);
+              showEvents($events);
               $this->endCapture();
             }            
             break;
@@ -51,7 +49,7 @@ class Calendar {
             $year  = $params[0];
             $month = $params[1];
             $this->beginCapture();            
-            $this->showCalendarForDate($year, $month);
+            $this->showCalendarForMonth($year, $month);
             $this->endCapture();
             break;
           default:
@@ -59,47 +57,9 @@ class Calendar {
             exit();
         }      
     }
-    
-    static public function getEventsByDate($date) {
-      return CalendarEvent::findAllFrom("CalendarEvent", "date_from = '$date' OR '$date' BETWEEN date_from AND date_to");      
-    }
-    
-    static public function showEvent($event, $show_creator = true) {   
-      /* Prepare the event's data */
-      $vars['id']    = $event->getId();  
-      $vars['title'] = $event->getTitle();
-      
-      $date_from = new DateTime($event->getDateFrom());
-      $vars['date_from'] = strftime("%x", $date_from->getTimestamp());
-      
-      if (empty($event->date_to))
-        $vars['date_to'] = null;
-      else {
-        $date_to = new DateTime($event->getDateTo()); 
-        $vars['date_to'] = strftime("%x", $date_to->getTimestamp());
-      }
-      
-      $vars['days']    = $event->getLength();
-      $vars['author']  = $event->getCreator();
-      $vars['content'] = $event->getContent();
-      
-      $vars['show_author'] = true;    
-     
-      /* Display an event */
-      $view = new View(PLUGINS_ROOT.DS.CALENDAR_VIEWS.'/event_frontend', $vars);
-      $view->display();  
-    }
-    
-    public function showCalendarForDate($year, $month) {
+          
+    private function showCalendarForMonth($year, $month) {
       $date = "$year-$month-1";    
       showCalendar($this->page->slug, $date);      
     }    
-
-    static private function showEventsContent($events) {
-      ob_start();
-      foreach ($events as $event)
-        Calendar::showEvent($event);
-  
-    }
-
 }

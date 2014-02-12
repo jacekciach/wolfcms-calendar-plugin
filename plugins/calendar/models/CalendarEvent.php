@@ -109,7 +109,8 @@ class CalendarEvent extends Record {
         return false;      
     }    
 
-    public static function generateAllEventsBetween($class_name, $from, $to) {
+    public static function generateAllEventsBetween($from, $to) {    
+      $class_name = get_called_class();
       
       $generate = "CALL Calendar_GenerateDates('$from','$to')";
       self::getConnection()->exec($generate);
@@ -126,7 +127,15 @@ class CalendarEvent extends Record {
           $objects[] = $object;
 
       return $objects;
-    }    
+    }
+    
+    static public function findEventsByDate($date) {
+      return self::findAllFrom(get_called_class(), "date_from = '$date' OR '$date' BETWEEN date_from AND date_to");      
+    }
+    
+    static public function findEventById($id) {
+      return self::findOneFrom(get_called_class(), "id = $id");      
+    }                    
 }
 
 ?>
