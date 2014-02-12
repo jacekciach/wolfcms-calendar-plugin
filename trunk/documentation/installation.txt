@@ -4,5 +4,5 @@
 
    <link rel="stylesheet" href="<?php echo THEMES_PATH; ?>calendar/calendar.css" type="text/css">
 
-4. Enable the plugin in Administation Panel.
+4. Enable the plugin in the Administration Panel.
 5. Works!
