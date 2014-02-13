@@ -1,4 +1,4 @@
-1. Copy plugins/calendar/ to wolf/plugins/
+1. Copy plugins/calendar/ to wolf/plugins/calendar/
 2. Copy public/css/calendar.css to, for example public/themes/calendar/calendar.css
 3. Insert to your layout (change the path, if needed):
 
