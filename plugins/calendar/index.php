@@ -9,7 +9,9 @@ Plugin::setInfos(array(
     'version'     => '0.1',
     'license'     => 'GPL',
     'author'      => 'Jacek Ciach',
-    'require_wolf_version' => '0.7.3'
+    'require_wolf_version' => '0.7.3',
+    'website'     => 'https://code.google.com/p/wolfcms-calendar-plugin/',
+    'update_url'  => 'https://wolfcms-calendar-plugin.googlecode.com/svn/calendar-version.xml'
 ));
 
 define('CALENDAR_VIEWS', 'calendar/views');
