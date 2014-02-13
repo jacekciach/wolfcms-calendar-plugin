@@ -19,7 +19,7 @@ ol li pre {
 
 <h2>Installation</h2>
 <ol>
-<li>Copy <b>plugins/calendar/</b> to <b>wolf/plugins/</b></li>
+  <li>Copy <b>plugins/calendar/</b> to <b>wolf/plugins/calendar/</b></li>
 <li>Copy <b>public/css/calendar.css</b> to, for example <b>public/themes/calendar/calendar.css</b></li>
 <li>Insert to your layout (change the path, if needed):
 <pre>
