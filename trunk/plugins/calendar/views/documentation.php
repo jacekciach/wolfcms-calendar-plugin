@@ -54,7 +54,7 @@ ol li pre {
 <h3>Customizing ,,the day'' page.</h3>
 <ol>
 <li>Create an event.</li>
-<li>Create a subpage of the calendar page and set a slug (alias) to event's ,,date_from''.</li>
+<li>Create a hidden subpage of the calendar page and set a slug (alias) to event's ,,date_from''.</li>
 <li>The created subpage will be shown if you click on the date.</li>
 </ol>
 <br>
