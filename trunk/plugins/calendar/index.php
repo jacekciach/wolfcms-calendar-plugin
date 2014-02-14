@@ -63,7 +63,7 @@ function showEvent($event, $show_author = true) {
   }
   
   $vars['days']    = $event->getLength();
-  $vars['author']  = $event->getCreator();
+  $vars['author']  = $event->getAuthor();
   $vars['content'] = $event->getContent();
   
   $vars['show_author'] = $show_author;    

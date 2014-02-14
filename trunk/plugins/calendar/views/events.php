@@ -24,7 +24,7 @@ if (!defined('IN_CMS')) { exit(); }
             <td><a href="<?php echo get_url('plugin/calendar/update/'.$event->id); ?>"><?php echo $event->getTitle(); ?></a></td>
             <td><?php echo $event->getDateFrom(); ?></td>            
             <td><?php echo $event->getDateTo(); ?></td>            
-            <td><?php echo $event->getCreator(); ?></td>
+            <td><?php echo $event->getAuthor(); ?></td>
             <td><a class="delete-event" href="<?php echo get_url('plugin/calendar/delete/'.$event->id); ?>"><img src="<?php echo ICONS_PATH; ?>action-delete-16.png" alt="Delete" /></a></td>
         </tr>
         <?php } ?>

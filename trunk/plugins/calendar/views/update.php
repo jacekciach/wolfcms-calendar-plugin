@@ -16,7 +16,7 @@ if (!$edit_event)
             <table class="fieldset" cellspacing="0" cellpadding="0" border="0">
                 <?php if ($edit_event): ?>
                     <input type="hidden" name="event[id]" value="<?php echo $event->getId(); ?>" />
-                    <input type="hidden" name="event[created_by_id]" value="<?php echo $event->getCreatorID(); ?>" />
+                    <input type="hidden" name="event[created_by_id]" value="<?php echo $event->getAuthorID(); ?>" />
                 <?php endif; ?>                
                 <tr>
                     <td class="label"><label for="event-title"><?php echo __('Title'); ?></label></td>

@@ -52,16 +52,20 @@ class CalendarEvent extends Record {
       return $this->id;
     }
     
-    public function getCreatorID() {
+    public function getAuthorID() {
       return $this->created_by_id;
     }
     
-    public function getCreator() {
+    public function getAuthor() {
       if (empty($this->created_by_id))
-        return false;
-      else
-        /* hope this is correct id ;) */
-        return User::findById($this->created_by_id)->name;
+        return null;
+      else {
+        $user = User::findById($this->created_by_id);
+    		if ($user instanceof User)
+    			return $user->name;
+    		else
+    			return null;
+	    }
     }    
 	
     public function getTitle() {
