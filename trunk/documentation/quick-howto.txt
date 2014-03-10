@@ -20,12 +20,24 @@ Configuration of the frontend
 5. Works!
 
 
-Customizing ,,the day'' page.
+Customizing ,,the day'' page
 =============================
 
 1. Create an event.
 2. Create a hidden subpage of the calendar page and set a slug (alias) to event's ,,date_from''.
 3. The created subpage will be shown if you click on the date.
+
+
+Disabling using the stored procedure
+====================================
+
+The Calendar Plugin uses one stored procedure. The procedure uses a temporary database table. Using of the procedure can be disabled.
+
+Just define a constant:
+
+  define('CALENDAR_USE_STORED_PROCEDURE', true);
+
+The definition can be placed in index.php file of the plugin or in config.php file of WolfCMS installation.
 
 
 Functions available in the frontend
