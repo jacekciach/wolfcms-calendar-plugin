@@ -1,0 +1,88 @@
+#calendar {
+  width: 100%;
+  margin-left: 0;
+  margin-bottom: 30px;
+}
+
+#calendar table {
+  width: 100%;
+}
+
+#calendar td, #calendar th {
+  padding: 4px 2px;
+  border: solid 1px black;  
+}
+
+#calendar th {
+  font-weight: bold;
+  background-color: #bbbbbb;
+  width: 14%;
+  text-align: center;  
+}
+
+#calendar td {
+  height: 4em;
+  text-align: left;
+  vertical-align: top;
+}
+
+#calendar .day-normal {
+}
+
+#calendar .day-grayed {
+  color: #999999;
+  font-style: italic;
+}
+
+#calendar .saturday {
+  background-color: #dddddd;
+}
+
+#calendar .sunday {
+  background-color: #ffdddd;
+}
+
+#calendar .today {
+  font-weight: bold;
+  background-color: rgb(160, 204, 106);
+}
+
+#calendar ul.events-list {
+  margin: 5px 1px 0px 1px;
+  padding: 0px;
+}
+
+#calendar ul.events-list li {
+  margin: 1px 0px;
+  padding: 0px 2px !important;
+  padding: 0px;
+  list-style-type: none;
+  font-size: 75%;
+  font-weight: normal;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: #ffffaa;      
+}
+
+#calendar ul.events-list li a {
+  color: darkblue;
+  display: block;
+  text-decoration: none;
+}
+
+#calendar ul.events-list li a:hover {
+  background-color: #ffff00;   
+}
+
+#calendar h3 span {
+  font-size: 65%;
+  font-weight: normal;
+}
+
+#calendar h3 span.prev {
+  margin-right: 10px;
+}
+
+#calendar h3 span.next {
+  margin-left: 10px;
+}
