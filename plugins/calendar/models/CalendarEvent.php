@@ -115,12 +115,18 @@ class CalendarEvent extends Record {
 
     public static function generateAllEventsBetween($from, $to) {    
       $class_name = get_called_class();
+
+      if (CALENDAR_USE_STORED_PROCEDURE) {
+        /* we are using a stored procedure */      
+        $generate = "CALL Calendar_GenerateDates('$from','$to')";
+        self::getConnection()->exec($generate);
+        self::logQuery($generate);      
       
-      $generate = "CALL Calendar_GenerateDates('$from','$to')";
-      self::getConnection()->exec($generate);
-      self::logQuery($generate);      
-      
-      $sql = 'SELECT * FROM __dates JOIN '.self::tableNameFromClassName($class_name).' cal ON value = cal.date_from OR value BETWEEN cal.date_from AND cal.date_to';
+        $sql = 'SELECT * FROM __dates JOIN '.self::tableNameFromClassName($class_name).' cal ON value = cal.date_from OR value BETWEEN cal.date_from AND cal.date_to';
+      }
+      else
+        /* The stored procedure is not used */
+        $sql = "SELECT * FROM ".self::tableNameFromClassName($class_name)." WHERE date_from BETWEEN '$from' AND '$to' OR date_to BETWEEN '$from' AND '$to'";
 
       $stmt = self::getConnection()->query($sql);
 
@@ -130,8 +136,24 @@ class CalendarEvent extends Record {
       while ($object = $stmt->fetchObject($class_name))
           $objects[] = $object;
 
-      return $objects;
-    }
+      if (CALENDAR_USE_STORED_PROCEDURE)
+        return $objects;
+      else {
+        /* If the stored procedure is not used, we want to "join __dates" with php */
+        $events = array();
+        foreach ($objects as $object) {
+          $date     = new DateTime($object->date_from);
+          $date_end = empty($object->date_to) ? new DateTime($object->date_from) : new DateTime($object->date_to);
+          while ($date <= $date_end) {
+            $event = clone($object);
+            $event->value = $date->format('Y-m-d');
+            $events[] = $event;
+            $date->modify("+1 day");
+          } /* while */     	
+        } /* foreach */
+        return $events;
+      } /* else */                
+    } /* function generateAllEventsBetween */
     
     static public function findEventsByDate($date) {
       return self::findAllFrom(get_called_class(), "date_from = '$date' OR '$date' BETWEEN date_from AND date_to");      

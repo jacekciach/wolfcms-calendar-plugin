@@ -2,14 +2,16 @@
 
 if (!defined('IN_CMS')) { exit(); }
 
+if (!defined('CALENDAR_USE_STORED_PROCEDURE')) define('CALENDAR_USE_STORED_PROCEDURE', true);
+
 Plugin::setInfos(array(
     'id'          => 'calendar',
     'title'       => __('Calendar'),
     'description' => __('Calendar'),
-    'version'     => '0.2',
+    'version'     => '0.3',
     'license'     => 'GPL',
     'author'      => 'Jacek Ciach',
-    'require_wolf_version' => '0.7.3',
+    'require_wolf_version' => '0.7.8',
     'website'     => 'https://code.google.com/p/wolfcms-calendar-plugin/',
     'update_url'  => 'https://wolfcms-calendar-plugin.googlecode.com/svn/calendar-version.xml'
 ));
