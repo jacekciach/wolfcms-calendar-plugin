@@ -2,7 +2,7 @@
 <wolf-plugins>
     <wolf-plugin>
         <id>calendar</id>
-        <version>0.3</version>
+        <version>0.4</version>
         <status>stable</status>
     </wolf-plugin>
 </wolf-plugins>
