@@ -63,7 +63,7 @@ ol li pre {
 <p>The Calendar Plugin uses one stored procedure. The procedure uses a temporary database table. Using of the procedure can be disabled.</p>
 <p>Just define a constant:
 <pre>
- define('CALENDAR_USE_STORED_PROCEDURE', true);
+ define('CALENDAR_USE_STORED_PROCEDURE', false);
 </pre>
 </p>
 <p>The definition can be placed in index.php file of the plugin or in config.php file of WolfCMS installation.</p>
