@@ -67,6 +67,15 @@ ol li pre {
 </pre>
 </p>
 <p>The definition can be placed in index.php file of the plugin or in config.php file of WolfCMS installation.</p>
+<br>
+
+<h3>Localizing the Calendar</h3>
+<p>The frontend view of the Calendar can be easily localized.</p>
+<p>Just add in your Wolf CMS config.php file:</p>
+<pre>
+ setlocale (LC_TIME /* or LC_ALL */, 'Dutch' /* of course here goes your language */);
+</pre>
+<p>(Un)fortunately this has one drawback: it localizes the dates on the entire page.</p>
 
 <h2>Copyright and Licence</h2>
 <p>
