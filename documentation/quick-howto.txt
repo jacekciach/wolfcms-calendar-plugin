@@ -40,6 +40,16 @@ Just define a constant:
 The definition can be placed in index.php file of the plugin or in config.php file of WolfCMS installation.
 
 
+Localizing the Calendar
+=======================
+
+The frontend view of the Calendar can be easily localized. Just add in your Wolf CMS config.php file:
+
+  setlocale (LC_TIME /* or LC_ALL */, 'Dutch' /* of course here goes your language */);
+
+(Un)fortunately this has one drawback: it localizes the dates on the entire page.
+
+
 Functions available in the frontend
 ===================================
 
