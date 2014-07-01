@@ -37,3 +37,5 @@ return array(
     'A new event has been created.'                 => 'Utworzono nowe wydarzenie.',
     'Are you sure you want to delete this event?'   => 'Jesteś pewien, że chcesz usunąć to wydarzenie?',    
 );
+
+?>
