@@ -3,6 +3,7 @@
 The plugins lets to maintain **a simple events list** and to show the event(s) in the frontend.
 
 Each event has its:
+
 1. Title,
 2. Date,
 3. Date of end (optional),
@@ -29,8 +30,6 @@ All views are translatable. There are three translations included: Polish, Engli
 1. Copy `plugins/calendar/` to `wolf/plugins/calendar/`
 2. Copy `public/css/calendar.css` to, for example, `public/themes/calendar/calendar.css`
 3. Insert to your layout (change the path, if needed):
-   ```
-   `<link rel="stylesheet" href="<?php echo THEMES_PATH; ?>calendar/calendar.css" type="text/css">
-   ```
+`<link rel="stylesheet" href="<?php echo THEMES_PATH; ?>calendar/calendar.css" type="text/css">`
 4. Enable the plugin in the Administration Panel.
 5. Works!
