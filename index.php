@@ -2,8 +2,6 @@
 
 if (!defined('IN_CMS')) { exit(); }
 
-if (!defined('CALENDAR_USE_STORED_PROCEDURE')) define('CALENDAR_USE_STORED_PROCEDURE', true);
-
 Plugin::setInfos(array(
     'id'          => 'calendar',
     'title'       => __('Calendar'),
