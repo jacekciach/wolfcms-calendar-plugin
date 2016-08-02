@@ -3,8 +3,8 @@ Adding events
 
 Events can be added from the Calendar tab in the admin backend.
 
-If you don't enter the ,,date to'', the event is considered to be one day long.
-In ,,description'' you can use HTML and insert a code in <?php ?>.
+If you don't enter the "date to", the event is considered to be one day long.
+In "description" you can use HTML and insert a code in <?php ?>.
 
 
 Configuration of the frontend
@@ -12,42 +12,20 @@ Configuration of the frontend
 
 1. Make a subpage of your home page.
 2. Name the subpage Events, Calendar, whatever you want.
-3. Change the behaviour to ,,calendar''.
-4. Insert in ,,body'' of the page:
+3. Change the behaviour to "calendar".
+4. Insert in "body" of the page:
 
     <?php showCalendar($this->slug); ?>
 
 5. Works!
 
 
-Customizing ,,the day'' page
-=============================
+Customizing "the day" page
+==========================
 
 1. Create an event.
-2. Create a hidden subpage of the calendar page and set a slug (alias) to event's ,,date_from''.
+2. Create a hidden subpage of the calendar page and set a slug (alias) to event's "date_from".
 3. The created subpage will be shown if you click on the date.
-
-
-Disabling using the stored procedure
-====================================
-
-The Calendar Plugin uses one stored procedure. The procedure uses a temporary database table. Using of the procedure can be disabled.
-
-Just define a constant:
-
-  define('CALENDAR_USE_STORED_PROCEDURE', false);
-
-The definition can be placed in index.php file of the plugin or in config.php file of WolfCMS installation.
-
-
-Localizing the Calendar
-=======================
-
-The frontend view of the Calendar can be easily localized. Just add in your Wolf CMS config.php file:
-
-  setlocale (LC_TIME /* or LC_ALL */, 'Dutch' /* of course here goes your language */);
-
-(Un)fortunately this has one drawback: it localizes the dates on the entire page.
 
 
 Functions available in the frontend
@@ -55,7 +33,7 @@ Functions available in the frontend
 
 /** Shows a month calendar
   * @param $slug Slug of the calendar page. The slug becomes a base for links shown in the calendar.
-  * @param $date Calendar shows $date's month. Null means ,,today''.
+  * @param $date Calendar shows $date's month. Null means "today".
   */
 function showCalendar($slug, $date = null)
 
