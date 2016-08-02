@@ -3,8 +3,9 @@
 if (!defined('IN_CMS')) { exit(); }
 
 define('CALENDAR_ID', 'calendar');
-define('CALENDAR_ROOT', PLUGINS_ROOT.DS.CALENDAR_ID);
-define('CALENDAR_VIEWS', CALENDAR_ROOT.'/views');
+define('CALENDAR_ROOT', PLUGINS_ROOT.'/'.CALENDAR_ID);
+define('CALENDAR_VIEWS_RELATIVE', CALENDAR_ID.'/views');
+define('CALENDAR_VIEWS', PLUGINS_ROOT.'/'.CALENDAR_VIEWS_RELATIVE);
 
 Plugin::setInfos(array(
   'id'                    => CALENDAR_ID,
