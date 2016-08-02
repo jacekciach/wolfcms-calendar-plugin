@@ -6,12 +6,12 @@ Plugin::setInfos(array(
     'id'          => 'calendar',
     'title'       => __('Calendar'),
     'description' => __('Calendar'),
-    'version'     => '0.4',
+    'version'     => '0.5',
     'license'     => 'GPL',
     'author'      => 'Jacek Ciach',
     'require_wolf_version' => '0.7.8',
-    'website'     => 'https://code.google.com/p/wolfcms-calendar-plugin/',
-    'update_url'  => 'https://wolfcms-calendar-plugin.googlecode.com/svn/calendar-version.xml'
+    'website'     => 'https://github.com/jacekciach/wolfcms-calendar-plugin',
+    'update_url'  => 'https://raw.githubusercontent.com/jacekciach/wolfcms-calendar-plugin/master/version.xml'
 ));
 
 define('CALENDAR_VIEWS', 'calendar/views');
