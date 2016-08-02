@@ -27,9 +27,9 @@ All views are translatable. There are three translations included: Polish, Engli
 
 # Installation
 
-1. Copy `plugins/calendar/` to `wolf/plugins/calendar/`
-2. Copy `public/css/calendar.css` to, for example, `public/themes/calendar/calendar.css`
+1. Copy plugin's files to `wolf/plugins/calendar/`
+2. Copy `css/calendar.css` to your theme folder, for example `public/themes/wolf/`
 3. Insert to your layout (change the path, if needed):
-`<link rel="stylesheet" href="<?php echo THEMES_PATH; ?>calendar/calendar.css" type="text/css">`
+`<link rel="stylesheet" href="<?php echo THEMES_PATH; ?>wolf/calendar.css" type="text/css">`
 4. Enable the plugin in the Administration Panel.
 5. Works!
