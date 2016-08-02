@@ -17,7 +17,7 @@ if (!$edit_event)
                 <?php if ($edit_event): ?>
                     <input type="hidden" name="event[id]" value="<?php echo $event->getId(); ?>" />
                     <input type="hidden" name="event[created_by_id]" value="<?php echo $event->getAuthorID(); ?>" />
-                <?php endif; ?>                
+                <?php endif; ?>
                 <tr>
                     <td class="label"><label for="event-title"><?php echo __('Title'); ?></label></td>
                     <td class="field"><input type="text" id="notes-title" name="event[title]" class="textbox" value="<?php echo $event->getTitle(); ?>" /></td>
@@ -29,7 +29,7 @@ if (!$edit_event)
                 <tr>
                     <td class="label"><label for="event-date_to"><?php echo __('Date to'); ?><br><small><?php echo " (".__('not required').")"; ?></small></label></td>
                     <td class="field"><input type="text" id="event-date_to" name="event[date_to]" class="textbox" value="<?php echo $event->getDateTo(); ?>" /></td>
-                </tr>                                
+                </tr>
                 <tr>
                     <td class="label"><label for="event-description"><?php echo __('Description'); ?><br><small><?php echo " (".__('not required').")"; ?></small></label></td>
                     <td class="text">

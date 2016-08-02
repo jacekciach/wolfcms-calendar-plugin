@@ -9,24 +9,24 @@ class CalendarTable {
 
   const ROWS = 5;
   const COLS = self::DAYS;
- 
+
   const PHP_SATURDAY = 6;
   const PHP_SUNDAY   = 0;
-  
+
   private $day_names;
-  
+
   private $date;
   private $events_map;
   private $base_path;
-  
+
   /**********************************************************************************************/
-  
+
   private static function getDaysNames($day_name_format) {
     /* Based on:
      * http://stackoverflow.com/questions/2536748/how-to-create-array-of-a-week-days-name-in-php
      * http://stackoverflow.com/a/2536802
-     */       
-  
+     */
+
     $names = array();
     $date = new DateTime("next Monday");
     for ($i = 0; $i < self::DAYS; ++$i) {
@@ -35,37 +35,37 @@ class CalendarTable {
     }
     return $names;
   }
-  
-  /**********************************************************************************************/    
+
+  /**********************************************************************************************/
 
   /** Prints the month containing the date
    * @param $_date null means ,today'
-   */       
+   */
   public function display() {
     $today = new DateTime();
-    $today->setTime(0,0);        
-    try {    
+    $today->setTime(0,0);
+    try {
       $date = new DateTime($this->date);
-      $date->setTime(0,0);      
+      $date->setTime(0,0);
     }
     catch (Exception $e) {
       echo "<p class=\"error\">The date: $this->date is incorrect.</p>\n";
       return;
     }
-      
+
     /* Calculate a date to begin with */
     $day   = $date->format('d');
     $month = $date->format('m');
     $year  = $date->format('Y');
-    
+
     $date->setDate($year, $month, 1);
     $first_day_of_week = ($date->format('w') -1 + self::DAYS) % self::DAYS;
-    $date->modify("-$first_day_of_week day");     
-      
+    $date->modify("-$first_day_of_week day");
+
     /* Table begin */
-    echo "<!-- BEGIN: Calendar -->\n";  
+    echo "<!-- BEGIN: Calendar -->\n";
     echo "<table>\n";
-    
+
     /* Print header */
     echo "<thead>\n";
     echo "<tr>";
@@ -73,13 +73,13 @@ class CalendarTable {
       echo "<th>".$this->day_names[$col]."</th>";
     echo "</tr>\n";
     echo "</thead>\n";
-  
+
     /* Print the month */
     echo "<tbody>\n";
     for ($row = 0; $row < self::ROWS; ++$row) {
       echo "<tr>";
       for ($col = 0; $col < self::COLS; ++$col) {
-          
+
           /* Calculate a desired html class */
           $class = null;
           $class .= ($date->format('m') != $month)             ? "day-grayed " : null;
@@ -87,41 +87,41 @@ class CalendarTable {
           $class .= ($date->format('w') == self::PHP_SUNDAY)   ? "sunday "     : null;
           $class .= ($date == $today)                          ? "today "      : null;
           if (!empty($class)) $class = " class=\"$class\"";
-          
+
           /* Print the day */
-          $day_number = "<span>".$date->format('j')."</span>";        
+          $day_number = "<span>".$date->format('j')."</span>";
           echo "<td$class>";
           echo "$day_number";
           $date_string = $date->format('Y-m-d');
           if (array_key_exists($date_string, $this->events_map)) {
             echo "<ul class=\"events-list\">";
             foreach ($this->events_map[$date_string] as $event)
-              echo "<li><a href='$this->base_path/$date_string'>$event</a></li>";                                          
-            echo "</ul>";            
+              echo "<li><a href='$this->base_path/$date_string'>$event</a></li>";
+            echo "</ul>";
           }
           echo "</td>";
-          
+
           /* Advance the date */
-          $date->modify("+1 day");        
+          $date->modify("+1 day");
       }
       echo "</tr>\n";
-    }      
+    }
     echo "</tbody>\n";
-    
-    /* Table end */  
+
+    /* Table end */
     echo "</table>\n";
-    echo "<!-- END: Calendar -->\n";    
+    echo "<!-- END: Calendar -->\n";
   }
-  
-  /**********************************************************************************************/  
-  
+
+  /**********************************************************************************************/
+
   public function __construct($base_path, $date = null, $events_map = array()) {
     $this->base_path = $base_path;
     $this->day_names = self::getDaysNames("%a");
     $this->date = $date;
     $this->events_map = $events_map;
   }
-  
+
 } // END: class CalendarTable
 
 $date = isset($date) ? $date : null;

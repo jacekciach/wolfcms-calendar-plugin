@@ -10,14 +10,14 @@
 
 #calendar td, #calendar th {
   padding: 4px 2px;
-  border: solid 1px black;  
+  border: solid 1px black;
 }
 
 #calendar th {
   font-weight: bold;
   background-color: #bbbbbb;
   width: 14%;
-  text-align: center;  
+  text-align: center;
 }
 
 #calendar td {
@@ -61,7 +61,7 @@
   font-weight: normal;
   border: 1px solid;
   border-radius: 5px;
-  background-color: #ffffaa;      
+  background-color: #ffffaa;
 }
 
 #calendar ul.events-list li a {
@@ -71,7 +71,7 @@
 }
 
 #calendar ul.events-list li a:hover {
-  background-color: #ffff00;   
+  background-color: #ffff00;
 }
 
 #calendar h3 span {
