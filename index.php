@@ -2,23 +2,25 @@
 
 if (!defined('IN_CMS')) { exit(); }
 
+define('CALENDAR_ID', 'calendar');
+define('CALENDAR_ROOT', PLUGINS_ROOT.DS.CALENDAR_ID);
+define('CALENDAR_VIEWS', CALENDAR_ROOT.'/views');
+
 Plugin::setInfos(array(
-    'id'          => 'calendar',
-    'title'       => __('Calendar'),
-    'description' => __('Calendar'),
-    'version'     => '0.5',
-    'license'     => 'GPL',
-    'author'      => 'Jacek Ciach',
-    'require_wolf_version' => '0.7.8',
-    'website'     => 'https://github.com/jacekciach/wolfcms-calendar-plugin',
-    'update_url'  => 'https://raw.githubusercontent.com/jacekciach/wolfcms-calendar-plugin/master/version.xml'
+  'id'                    => CALENDAR_ID,
+  'title'                 => __('Calendar'),
+  'description'           => __('Calendar'),
+  'version'               => '0.5',
+  'license'               => 'GPL',
+  'author'                => 'Jacek Ciach',
+  'require_wolf_version'  => '0.7.8',
+  'website'               => 'https://github.com/jacekciach/wolfcms-calendar-plugin',
+  'update_url'            => 'https://raw.githubusercontent.com/jacekciach/wolfcms-calendar-plugin/master/version.xml'
 ));
 
-define('CALENDAR_VIEWS', 'calendar/views');
-
 Plugin::addController('calendar', __('Calendar'), 'admin_view', true);
-AutoLoader::addFile('CalendarEvent', CORE_ROOT.'/plugins/calendar/models/CalendarEvent.php');
-Behavior::add('calendar', 'calendar/behaviour.php');
+AutoLoader::addFile('CalendarEvent', CALENDAR_ROOT.'/models/CalendarEvent.php');
+Behavior::add('calendar', CALENDAR_ID.'/behaviour.php');
 
 function showCalendar($slug, $date = null) {
   $date_begin = new DateTime($date);
@@ -38,9 +40,9 @@ function showCalendar($slug, $date = null) {
   }
 
   $calendar = new View(
-                    PLUGINS_ROOT.DS.CALENDAR_VIEWS.'/calendar_table',
+                    CALENDAR_VIEWS.'/calendar_table',
                     array(
-                      'base_path' => BASE_URL.$slug,
+                      'base_path' => get_url($slug),
                       'date'      => $date,
                       'map'       => $events_map
                     ));
@@ -69,7 +71,7 @@ function showEvent($event, $show_author = true) {
   $vars['show_author'] = $show_author;
 
   /* Display an event */
-  $view = new View(PLUGINS_ROOT.DS.CALENDAR_VIEWS.'/event_frontend', $vars);
+  $view = new View(CALENDAR_VIEWS.'/event_frontend', $vars);
   $view->display();
 }
 
