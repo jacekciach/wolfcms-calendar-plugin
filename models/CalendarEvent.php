@@ -2,15 +2,17 @@
 
 if (!defined('IN_CMS')) { exit(); }
 
+define('SQL_DATE_FORMAT', 'Y-m-d');
+
 class CalendarEvent extends Record {
     const TABLE_NAME = 'calendar';
 
-    public $id;
-    public $created_by_id;
-    public $title;
-    public $date_from;
-    public $date_to;
-    public $description;
+    private $id;
+    private $created_by_id;
+    private $title;
+    private $date_from;
+    private $date_to;
+    private $description;
 
     public function checkData() {
       $this->title = trim($this->title);
@@ -113,18 +115,20 @@ class CalendarEvent extends Record {
         return false;
     }
 
-    public static function generateAllEventsBetween($from, $to) {
+    public static function generateAllEventsBetween(DateTime $date_from, DateTime $date_to) {
       $class_name = get_called_class();
+      $date_from_str = $date_from->format(SQL_DATE_FORMAT);
+      $date_to_str = $date_to->format(SQL_DATE_FORMAT);
 
-      $sql = "SELECT * FROM ".self::tableNameFromClassName($class_name)." WHERE date_from BETWEEN '$from' AND '$to' OR date_to BETWEEN '$from' AND '$to'";
-
-      $stmt = self::getConnection()->query($sql);
-
-      self::logQuery($sql);
-
-      $objects = array();
-      while ($object = $stmt->fetchObject($class_name))
-          $objects[] = $object;
+      $objects = CalendarEvent::find(array(
+        'where' => '(date_from BETWEEN :date_from1 AND :date_to1) OR (date_to BETWEEN :date_from2 AND :date_to2)',
+        'values' => array(
+          'date_from1'  => $date_from_str,
+          'date_to1'    => $date_to_str,
+          'date_from2'  => $date_from_str,
+          'date_to2'    => $date_to_str
+        )
+      ));
 
       $events = array();
       foreach ($objects as $object) {
@@ -142,12 +146,19 @@ class CalendarEvent extends Record {
 
     } /* function generateAllEventsBetween */
 
-    static public function findEventsByDate($date) {
-      return self::findAllFrom(get_called_class(), "date_from = '$date' OR '$date' BETWEEN date_from AND date_to");
+    static public function findEventsByDate(DateTime $date) {
+      $date_str = $date->format(SQL_DATE_FORMAT);
+      return CalendarEvent::find(array(
+        'where' => 'date_from = :date1 OR (:date2 BETWEEN date_from AND date_to)',
+        'values' => array(
+          'date1' => $date_str,
+          'date2' => $date_str
+        )
+      ));
     }
 
     static public function findEventById($id) {
-      return self::findOneFrom(get_called_class(), "id = $id");
+      return CalendarEvent::findById($id);
     }
 }
 

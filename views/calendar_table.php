@@ -44,14 +44,9 @@ class CalendarTable {
   public function display() {
     $today = new DateTime();
     $today->setTime(0,0);
-    try {
-      $date = new DateTime($this->date);
-      $date->setTime(0,0);
-    }
-    catch (Exception $e) {
-      echo "<p class=\"error\">The date: $this->date is incorrect.</p>\n";
-      return;
-    }
+
+    $date = clone($this->date);
+    $date->setTime(0,0);
 
     /* Calculate a date to begin with */
     $day   = $date->format('d');
@@ -115,7 +110,7 @@ class CalendarTable {
 
   /**********************************************************************************************/
 
-  public function __construct($base_path, $date = null, $events_map = array()) {
+  public function __construct($base_path, DateTime $date = null, $events_map = array()) {
     $this->base_path = $base_path;
     $this->day_names = self::getDaysNames("%a");
     $this->date = $date;
@@ -124,19 +119,17 @@ class CalendarTable {
 
 } // END: class CalendarTable
 
-$date = isset($date) ? $date : null;
-$map  = isset($map)  ? $map  : array();
+$map  = isset($map) ? $map : array();
 
-$datetime = new DateTime($date);
-$datetime_prev = clone($datetime);
-$datetime_prev->modify("first day of previous month");
-$datetime_next = clone($datetime);
-$datetime_next->modify("first day of next month");
+$date_prev = clone($date);
+$date_prev->modify("first day of previous month");
+$date_next = clone($date);
+$date_next->modify("first day of next month");
 
 echo "<h3>";
-echo "<span class=\"prev\"><a href=\"$base_path/".$datetime_prev->format("Y")."/".$datetime_prev->format("m")."\">".strftime("%B %Y", $datetime_prev->getTimestamp())."</a></span>";
-echo " ".strftime("%B %Y", $datetime->getTimestamp())." ";
-echo "<span class=\"next\"><a href=\"$base_path/".$datetime_next->format("Y")."/".$datetime_next->format("m")."\">".strftime("%B %Y", $datetime_next->getTimestamp())."</a></span>";
+echo "<span class=\"prev\"><a href=\"$base_path/".$date_prev->format("Y")."/".$date_prev->format("m")."\">".strftime("%B %Y", $date_prev->getTimestamp())."</a></span>";
+echo " ".strftime("%B %Y", $date->getTimestamp())." ";
+echo "<span class=\"next\"><a href=\"$base_path/".$date_next->format("Y")."/".$date_next->format("m")."\">".strftime("%B %Y", $date_next->getTimestamp())."</a></span>";
 echo "</h3>";
 
 $calendar = new CalendarTable($base_path, $date, $map);

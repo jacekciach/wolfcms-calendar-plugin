@@ -23,16 +23,14 @@ Plugin::addController('calendar', __('Calendar'), 'admin_view', true);
 AutoLoader::addFile('CalendarEvent', CALENDAR_ROOT.'/models/CalendarEvent.php');
 Behavior::add('calendar', CALENDAR_ID.'/behaviour.php');
 
-function showCalendar($slug, $date = null) {
-  $date_begin = new DateTime($date);
+function showCalendar($slug, DateTime $date = null) {
+  $date_begin = clone($date);
   $date_begin->modify("first day of this month");
   $date_begin->modify("-1 week");
-  $date_begin = $date_begin->format('Y-m-d');
 
-  $date_end = new DateTime($date);
+  $date_end = clone($date);
   $date_end->modify("last day of this month");
   $date_end->modify("+1 week");
-  $date_end = $date_end->format('Y-m-d');
 
   $events = CalendarEvent::generateAllEventsBetween($date_begin, $date_end);
   $events_map = array();

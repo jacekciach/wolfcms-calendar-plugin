@@ -16,50 +16,60 @@ class Calendar {
       ob_end_clean();
     }
 
+    private function pageNotFound() {
+      pageNotFound();
+      exit();
+    }
+
     public function __construct(&$page, $params) {
         $this->page   = & $page;
         $this->params = $params;
 
         switch (count($params)) {
           case 0:
-            break;
-          case 1:
+            break; // main page of calendar behaviour, don't change anything
+
+          case 1: // there's one parameter after slash
             $slug = $params[0];
+
             /* We try to find a subpage of the calendar page, so the event's page can be customized */
             $page_found = Page::findBySlug($slug, $this->page, true);
-            if (is_a($page_found, "Page"))
-              $this->page = $page_found; /* A subpage is found, so display it */
-            else {
-              /* A subpage is not found, so try to parse a date and then create an event's page */
-              try {
-                $datetime = new DateTime($slug);
-              }
-              catch (Exception $e) {
-                pageNotFound();
-                exit();
-              }
-              $events = CalendarEvent::findEventsByDate($datetime->format('Y-m-d'));
-              $this->page->title = strftime("%x", $datetime->getTimestamp()); /* The date should be localized */
+            /* A subpage is found, so display it */
+            if (is_a($page_found, "Page")) {
+              $this->page = $page_found;
+              break; // go outside the switch
+            }
+
+            /* A subpage is not found, so try to parse a date and then create an event's page */
+            $date_regexp = '/^\d{4}-\d{2}-\d{2}$/'; // regexp that checks if the slug has format of a date
+            if (preg_match($date_regexp, $slug)) {
+              $date = new DateTime($slug);
+              $events = CalendarEvent::findEventsByDate($date);
+              $this->page->title = strftime("%x", $date->getTimestamp()); /* The date should be localized */
               $this->beginCapture();
               showEvents($events);
               $this->endCapture();
             }
+            else
+              $this->pageNotFound();
+
             break;
-          case 2:
-            $year  = $params[0];
-            $month = $params[1];
+
+          case 2: // there're two parameters after slash
+            $year  = (int)$params[0];
+            $month = (int)$params[1];
+
+            $date = new DateTime();
+            $date->setDate($year, $month, 1);
+
             $this->beginCapture();
-            $this->showCalendarForMonth($year, $month);
+            showCalendar($this->page->slug, $date);
             $this->endCapture();
             break;
+
           default:
-            pageNotFound();
-            exit();
+            $this->pageNotFound();
         }
     }
 
-    private function showCalendarForMonth($year, $month) {
-      $date = "$year-$month-1";
-      showCalendar($this->page->slug, $date);
-    }
 }
