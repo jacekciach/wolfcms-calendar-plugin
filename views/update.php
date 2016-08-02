@@ -10,7 +10,7 @@ if (!$edit_event)
 
 <h1><?php echo $edit_event ? __('Edit the event') : __('A new event'); ?></h1>
 
-<form action="<?php echo BASE_URL; ?>plugin/calendar/update_event" method="post">
+<form action="<?php echo get_url('plugin/calendar/update_event'); ?> method="post">
     <fieldset style="padding:0.5em;">
         <legend style="padding: 0em 0.5em 0em 0.5em; font-weight: bold;"><?php echo __('Edit the event'); ?></legend>
             <table class="fieldset" cellspacing="0" cellpadding="0" border="0">
@@ -24,16 +24,22 @@ if (!$edit_event)
                 </tr>
                 <tr>
                     <td class="label"><label for="event-date_from"><?php echo __('Date from'); ?></label></td>
-                    <td class="field"><input type="text" id="event-date_from" name="event[date_from]" class="textbox" value="<?php echo $event->getDateFrom(); ?>" /></td>
+                    <td class="field">
+                        <input type="text" id="event-date_from" name="event[date_from]" size="10" value="<?php echo $event->getDateFrom(); ?>" />
+                        <img class="datepicker" onclick="displayDatePicker('event[date_from]');" src="<?php echo PATH_PUBLIC; ?>wolf/admin/images/icon_cal.gif" alt="<?php echo __('Show Calendar'); ?>" />
+                    </td>
                 </tr>
                 <tr>
                     <td class="label"><label for="event-date_to"><?php echo __('Date to'); ?><br><small><?php echo " (".__('not required').")"; ?></small></label></td>
-                    <td class="field"><input type="text" id="event-date_to" name="event[date_to]" class="textbox" value="<?php echo $event->getDateTo(); ?>" /></td>
+                    <td class="field">
+                        <input type="text" id="event-date_to" name="event[date_to]" size="10" value="<?php echo $event->getDateTo(); ?>" />
+                        <img class="datepicker" onclick="displayDatePicker('event[date_to]');" src="<?php echo PATH_PUBLIC; ?>wolf/admin/images/icon_cal.gif" alt="<?php echo __('Show Calendar'); ?>" />
+                    </td>
                 </tr>
                 <tr>
                     <td class="label"><label for="event-description"><?php echo __('Description'); ?><br><small><?php echo " (".__('not required').")"; ?></small></label></td>
                     <td class="text">
-                    <textarea id="event_description" name="event[description]" class="textarea" rows="10" cols="40"><?php echo htmlentities($event->getDescription(), ENT_COMPAT, 'UTF-8'); ?></textarea>
+                        <textarea id="event_description" name="event[description]" class="textarea" rows="10" cols="40"><?php echo htmlentities($event->getDescription(), ENT_COMPAT, 'UTF-8'); ?></textarea>
                     </td>
                 </tr>
         </table>
