@@ -21,7 +21,7 @@ The plugin comes with a default cascade style sheet file, designed and tested on
 
 The plugin has been tested on a real, living page, with Wolf CMS 0.7.8.
 
-All views are translatable. There are three translations included: Polish, English and Dutch. The names of days of the week and of months are based on a current system locale.
+All views are translatable. There are four translations included: Polish, English, Dutch and Spanish. The names of days of the week and of months are based on a current system locale.
 
 \* the calendar view should be used on the top calendar behaviour page; but it's not a requirement
 
