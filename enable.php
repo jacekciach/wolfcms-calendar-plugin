@@ -7,16 +7,16 @@ $PDO = Record::getConnection();
 
 $sql_table =
   "CREATE TABLE ".TABLE_PREFIX."calendar (
-    id int NOT NULL AUTO_INCREMENT,
-    created_by_id int NOT NULL,
-    title varchar(256) COLLATE 'utf8_polish_ci' NOT NULL,
-    date_from date NOT NULL,
-    date_to date NULL,
-    description text COLLATE 'utf8_polish_ci' NULL,
+    id            INT           NOT NULL AUTO_INCREMENT,
+    created_by_id INT           NOT NULL,
+    title         VARCHAR(256)  NOT NULL,
+    date_from     DATE          NOT NULL,
+    date_to       DATE              NULL,
+    description   TEXT              NULL,
     PRIMARY KEY (id),
     KEY date_from (date_from)
-  ) ENGINE=MyISAM";
-  
+  ) ENGINE=MyISAM DEFAULT CHARSET=utf8";
+
 $sql_procedure =
    "CREATE PROCEDURE Calendar_GenerateDates (IN date_from date, IN date_to date)
     begin
