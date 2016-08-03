@@ -15,6 +15,7 @@ define('CALENDAR_VIEWS_FRONT', PLUGINS_ROOT.'/'.CALENDAR_VIEWS_RELATIVE_FRONT);
 define('CALENDAR_VIEWS_ADMIN', PLUGINS_ROOT.'/'.CALENDAR_VIEWS_RELATIVE_ADMIN);
 
 define('CALENDAR_SQL_DATE_FORMAT', 'Y-m-d');
+define('CALENDAR_DISPLAY_DATE_FORMAT', 'Y-m-d');
 
 /* Basic information about the plugin */
 Plugin::setInfos(array(
