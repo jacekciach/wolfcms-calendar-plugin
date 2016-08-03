@@ -35,7 +35,7 @@ class CalendarController extends PluginController {
 
     // List all events
     public function events() {
-        $events = CalendarEvent::findAllFrom('CalendarEvent','id=id ORDER BY date_from DESC, date_to DESC');
+        $events = CalendarEvent::find(array('order' => 'date_from DESC, date_to DESC'));
         $this->display(CALENDAR_VIEWS_RELATIVE_ADMIN.'/events', array('events' => $events));
     }
 
