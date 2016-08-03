@@ -38,8 +38,8 @@ class CalendarEvent extends Record {
       $this->id             = isset($this->id)            ? (int)$this->id                  : null;
       $this->created_by_id  = isset($this->created_by_id) ? (int)$this->created_by_id       : null;
       $this->title          = isset($this->title)         ? trim($this->title)              : null;
-      $this->date_from      = isset($this->date_from)     ? new DateTime($this->date_from)  : null;
-      $this->date_to        = isset($this->date_to)       ? new DateTime($this->date_to)    : null;
+      $this->date_from      = !empty($this->date_from)    ? new DateTime($this->date_from)  : null;
+      $this->date_to        = !empty($this->date_to)      ? new DateTime($this->date_to)    : null;
       $this->description    = isset($this->description)   ? trim($this->description)        : null;
 
     }
@@ -110,13 +110,13 @@ class CalendarEvent extends Record {
     }
 
     public function save() {
-      $this->date_from = $this->date_from->format(CALENDAR_SQL_DATE_FORMAT);
-      $this->date_to = $this->date_to->format(CALENDAR_SQL_DATE_FORMAT);
+      if (isset($this->date_from)) $this->date_from = $this->date_from->format(CALENDAR_SQL_DATE_FORMAT);
+      if (isset($this->date_to))   $this->date_to   = $this->date_to->format(CALENDAR_SQL_DATE_FORMAT);
 
       $result = parent::save();
 
-      $this->date_from = new DateTime($this->date_from);
-      $this->date_to = new DateTime($this->date_to);
+      if (isset($this->date_from)) $this->date_from = new DateTime($this->date_from);
+      if (isset($this->date_to))   $this->date_to   = new DateTime($this->date_to);
 
       return $result;
     }
