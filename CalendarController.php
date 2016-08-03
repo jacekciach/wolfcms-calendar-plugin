@@ -29,7 +29,7 @@ class CalendarController extends PluginController {
     }
 
     // Add new event
-    public function new_event(){
+    public function add(){
         $this->display(CALENDAR_VIEWS_RELATIVE_ADMIN.'/update');
     }
 
