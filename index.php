@@ -14,7 +14,7 @@ Plugin::setInfos(array(
   'version'               => '0.5',
   'license'               => 'GPL',
   'author'                => 'Jacek Ciach',
-  'require_wolf_version'  => '0.7.8',
+  'require_wolf_version'  => '0.8.0',
   'website'               => 'https://github.com/jacekciach/wolfcms-calendar-plugin',
   'update_url'            => 'https://raw.githubusercontent.com/jacekciach/wolfcms-calendar-plugin/master/version.xml'
 ));
