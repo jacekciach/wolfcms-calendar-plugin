@@ -40,7 +40,7 @@ class CalendarController extends PluginController {
     }
 
     public function update($id){
-        $event = CalendarEvent::findByIdFrom('CalendarEvent', $id);
+        $event = CalendarEvent::findEventById($id);
         $this->display(CALENDAR_VIEWS_RELATIVE_ADMIN.'/update', array('event' => $event));
     }
 
