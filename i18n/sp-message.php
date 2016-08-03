@@ -36,6 +36,10 @@ return array(
     'The event has been updated.'                   => 'Se ha acualizado el evento.',
     'A new event has been created.'                 => 'Se ha creado un nuevo evento.',
     'Are you sure you want to delete this event?'   => '¿Seguro que quiere borrar éste evento?',
+    'Title is required'                             => 'El campo es obligatorio', // translated with translate.google.com
+    'Date from is required'                         => 'El campo es obligatorio', // translated with translate.google.com
+    'Date from is invalid'                          => 'El campo no es válido',   // translated with translate.google.com
+    'Date to is invalid'                            => 'El campo no es válido',   // translated with translate.google.com
 );
 
 ?>

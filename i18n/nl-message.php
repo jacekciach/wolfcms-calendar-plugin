@@ -36,6 +36,10 @@ return array(
     'The event has been updated.'                   => 'Dit evenement is bijgewerkt.',
     'A new event has been created.'                 => 'Een nieuw evenement is aangemaakt.',
     'Are you sure you want to delete this event?'   => 'Weet je zeker dat je dit evenement wilt verwijderen?',
+    'Title is required'                             => 'Het veld is verplicht', // translated with translate.google.com
+    'Date from is required'                         => 'Het veld is verplicht', // translated with translate.google.com
+    'Date from is invalid'                          => 'Het veld is ongeldig',  // translated with translate.google.com
+    'Date to is invalid'                            => 'Het veld is ongeldig',  // translated with translate.google.com
 );
 
 ?>

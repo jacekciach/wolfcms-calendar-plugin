@@ -36,6 +36,10 @@ return array(
     'The event has been updated.'                   => 'Wydarzenie zostało zmodyfikowane.',
     'A new event has been created.'                 => 'Utworzono nowe wydarzenie.',
     'Are you sure you want to delete this event?'   => 'Jesteś pewien, że chcesz usunąć to wydarzenie?',
+    'Title is required'                             => 'Pole <b>Tytuł</b> jest wymagane',
+    'Date from is required'                         => '<b>Data</b> wydarzenia jest wymagana',
+    'Date from is invalid'                          => '<b>Data</b> wydarzenia jest niepoprawna',
+    'Date to is invalid'                            => '<b>Data końca</b> wydarzenia jest niepoprawna',
 );
 
 ?>
