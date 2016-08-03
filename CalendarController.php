@@ -70,7 +70,7 @@ class CalendarController extends PluginController {
 
                 /* Check data and, if correct, save to DB */
                 if ($event->save()) {
-                  if (isset($data['id']))
+                  if (isset($post_data['id']))
                     Flash::set('success', __('The event has been updated.'));
                   else
                     Flash::set('success', __('A new event has been created.'));
