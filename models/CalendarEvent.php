@@ -5,12 +5,13 @@ if (!defined('IN_CMS')) { exit(); }
 class CalendarEvent extends Record {
     const TABLE_NAME = 'calendar';
 
-    protected $id; // the field needs to be protected, because it's used by WolfCMS' Record class
-    private $created_by_id;
-    private $title;
-    private $date_from;
-    private $date_to;
-    private $description;
+    // the fields need to be protected, because it's used by WolfCMS' Record class
+    protected $id;
+    protected $created_by_id;
+    protected $title;
+    protected $date_from;
+    protected $date_to;
+    protected $description;
 
     private function checkDates() {
       if (!empty($this->date_to)) {
