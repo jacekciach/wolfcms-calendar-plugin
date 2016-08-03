@@ -10,7 +10,7 @@ if (!$edit_event)
 
 <h1><?php echo $edit_event ? __('Edit the event') : __('A new event'); ?></h1>
 
-<form action="<?php echo get_url('plugin/calendar/update_event'); ?> method="post">
+<form action="<?php echo get_url('plugin/calendar/update_event'); ?>" method="post">
     <fieldset style="padding:0.5em;">
         <legend style="padding: 0em 0.5em 0em 0.5em; font-weight: bold;"><?php echo __('Edit the event'); ?></legend>
             <table class="fieldset" cellspacing="0" cellpadding="0" border="0">
