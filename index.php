@@ -113,3 +113,18 @@ function showEvents(array $events) {
   foreach ($events as $event)
     showEvent($event);
 }
+
+/** Validates if a string has a format of CALENDAR_DISPLAY_DATE_FORMAT and is a valid date
+  * @param $date_str a string to be validated
+  * @return true/false
+  */
+function validateDateString($date_str)
+{
+  $datetime = DateTime::createFromFormat(CALENDAR_DISPLAY_DATE_FORMAT, $date_str);
+  if ($datetime) {
+    $errors = $datetime->getLastErrors();
+    return ($errors['warning_count'] === 0) && ($errors['error_count'] === 0);
+  }
+  else
+    return false;
+}

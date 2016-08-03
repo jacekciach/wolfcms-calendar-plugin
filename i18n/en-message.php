@@ -36,6 +36,10 @@ return array(
     'The event has been updated.'                   => 'The event has been updated.',
     'A new event has been created.'                 => 'A new event has been created.',
     'Are you sure you want to delete this event?'   => 'Are you sure you want to delete this event?',
+    'Title is required'                             => '<b>Title</b> is required',
+    'Date from is required'                         => '<b>Date from</b> is required',
+    'Date from is invalid'                          => '<b>Date from</b> is invalid',
+    'Date to is invalid'                            => '<b>Date to</b> is invalid',
 );
 
 ?>

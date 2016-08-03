@@ -45,3 +45,9 @@ function showEvent(CalendarEvent $event, $show_author = true)
 
 /** Shows array of events. Calls showEvent() in a loop, with $show_author = true */
 function showEvents(array $events)
+
+/** Validates if a string has a format of CALENDAR_DISPLAY_DATE_FORMAT and is a valid date
+  * @param $date_str a string to be validated
+  * @return true/false
+  */
+function validateDateString($date_str)
