@@ -4,8 +4,14 @@ if (!defined('IN_CMS')) { exit(); }
 
 define('CALENDAR_ID', 'calendar');
 define('CALENDAR_ROOT', PLUGINS_ROOT.'/'.CALENDAR_ID);
+
 define('CALENDAR_VIEWS_RELATIVE', CALENDAR_ID.'/views');
-define('CALENDAR_VIEWS', PLUGINS_ROOT.'/'.CALENDAR_VIEWS_RELATIVE);
+define('CALENDAR_VIEWS_RELATIVE_FRONT', CALENDAR_VIEWS_RELATIVE.'/front');
+define('CALENDAR_VIEWS_RELATIVE_ADMIN', CALENDAR_VIEWS_RELATIVE.'/admin');
+
+define('CALENDAR_VIEWS',       PLUGINS_ROOT.'/'.CALENDAR_VIEWS_RELATIVE);
+define('CALENDAR_VIEWS_FRONT', PLUGINS_ROOT.'/'.CALENDAR_VIEWS_RELATIVE_FRONT);
+define('CALENDAR_VIEWS_ADMIN', PLUGINS_ROOT.'/'.CALENDAR_VIEWS_RELATIVE_ADMIN);
 
 define('CALENDAR_SQL_DATE_FORMAT', 'Y-m-d');
 
@@ -46,7 +52,7 @@ function showCalendar($slug, DateTime $date = null) {
 
   // display calendar table
   $calendar = new View(
-                    CALENDAR_VIEWS.'/calendar_table',
+                    CALENDAR_VIEWS_FRONT.'/calendar',
                     array(
                       'base_path' => get_url($slug),
                       'date'      => $date,
@@ -75,7 +81,7 @@ function showEvent($event, $show_author = true) {
   $vars['show_author'] = $show_author;
 
   /* Display an event */
-  $view = new View(CALENDAR_VIEWS.'/event_frontend', $vars);
+  $view = new View(CALENDAR_VIEWS_FRONT.'/event', $vars);
   $view->display();
 }
 

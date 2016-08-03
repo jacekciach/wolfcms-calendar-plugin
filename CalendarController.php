@@ -15,7 +15,7 @@ class CalendarController extends PluginController {
         self::_checkPermission();
 
         $this->setLayout('backend');
-        $this->assignToLayout('sidebar', new View(CALENDAR_VIEWS.'/sidebar'));
+        $this->assignToLayout('sidebar', new View(CALENDAR_VIEWS_ADMIN.'/sidebar'));
     }
 
     // Take me to all events
@@ -25,23 +25,23 @@ class CalendarController extends PluginController {
 
     // Documentation
     public function documentation() {
-        $this->display(CALENDAR_VIEWS_RELATIVE.'/documentation');
+        $this->display(CALENDAR_VIEWS_RELATIVE_ADMIN.'/documentation');
     }
 
     // Add new event
     public function new_event(){
-        $this->display(CALENDAR_VIEWS_RELATIVE.'/update');
+        $this->display(CALENDAR_VIEWS_RELATIVE_ADMIN.'/update');
     }
 
     // List all events
     public function events() {
         $events = CalendarEvent::findAllFrom('CalendarEvent','id=id ORDER BY date_from DESC, date_to DESC');
-        $this->display(CALENDAR_VIEWS_RELATIVE.'/events', array('events' => $events));
+        $this->display(CALENDAR_VIEWS_RELATIVE_ADMIN.'/events', array('events' => $events));
     }
 
     public function update($id){
         $event = CalendarEvent::findByIdFrom('CalendarEvent', $id);
-        $this->display(CALENDAR_VIEWS_RELATIVE.'/update', array('event' => $event));
+        $this->display(CALENDAR_VIEWS_RELATIVE_ADMIN.'/update', array('event' => $event));
     }
 
     // Delete event
@@ -79,7 +79,7 @@ class CalendarController extends PluginController {
                 }
                 else {
                   Flash::setNow('error', __('There are errors in the form.'));
-                  $this->display(CALENDAR_VIEWS_RELATIVE.'/update', array('event' => $event));
+                  $this->display(CALENDAR_VIEWS_RELATIVE_ADMIN.'/update', array('event' => $event));
                 }
         }
 
