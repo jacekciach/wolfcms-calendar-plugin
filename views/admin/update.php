@@ -25,7 +25,7 @@ if (!$edit_event)
                 <tr>
                     <td class="label"><label for="event-date_from"><?php echo __('Date from'); ?></label></td>
                     <td class="field">
-                        <input type="text" id="event-date_from" name="event[date_from]" size="10" value="<?php echo $event->getDateFrom()->format(CALENDAR_DISPLAY_DATE_FORMAT); ?>" />
+                        <input type="text" id="event-date_from" name="event[date_from]" size="10" value="<?php if ($event->getDateFrom()) echo $event->getDateFrom()->format(CALENDAR_DISPLAY_DATE_FORMAT); ?>" />
                         <img class="datepicker" onclick="displayDatePicker('event[date_from]');" src="<?php echo PATH_PUBLIC; ?>wolf/admin/images/icon_cal.gif" alt="<?php echo __('Show Calendar'); ?>" />
                     </td>
                 </tr>
