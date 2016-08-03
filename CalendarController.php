@@ -11,18 +11,6 @@ class CalendarController extends PluginController {
         }
     }
 
-    private function display_update_view(CalendarEvent $event) {
-        $updating = (bool)($event->getId());
-        $this->display(
-            CALENDAR_VIEWS_RELATIVE_ADMIN.'/update',
-            array(
-                'event' => $event,
-                'updating' => $updating,
-                'form_action' => get_url('plugin/'.CALENDAR_ID.'/'.($updating ? 'update/'.$event->getId() : 'add'))
-            )
-        );
-    }
-
     private function process_update_post(CalendarEvent $old_event)
     {
         $updating = (bool)($old_event->getId());
@@ -52,6 +40,18 @@ class CalendarController extends PluginController {
 
         // if it's not POST, just return $old_event
         return $old_event;
+    }
+
+    private function display_update_view(CalendarEvent $event) {
+        $updating = (bool)($event->getId());
+        $this->display(
+            CALENDAR_VIEWS_RELATIVE_ADMIN.'/update',
+            array(
+                'event' => $event,
+                'updating' => $updating,
+                'form_action' => get_url('plugin/'.CALENDAR_ID.'/'.($updating ? 'update/'.$event->getId() : 'add'))
+            )
+        );
     }
 
     private function process_update(CalendarEvent $event)
