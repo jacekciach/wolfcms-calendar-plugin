@@ -38,10 +38,10 @@ Functions available in the frontend
 function showCalendar($slug, $date = null)
 
 /** Shows en event
-  * @param $event An object of CalendarEvent class. Can be got with, i.e., CalendarEvent::findEventById().
+  * @param $event An object of CalendarEvent class.
   * @param $show_author If true, a box with the event's author is shown below the event's description.
   */
-function showEvent($event, $show_author = true)
+function showEvent(CalendarEvent $event, $show_author = true)
 
 /** Shows array of events. Calls showEvent() in a loop, with $show_author = true */
 function showEvents(array $events)

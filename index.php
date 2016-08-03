@@ -2,6 +2,7 @@
 
 if (!defined('IN_CMS')) { exit(); }
 
+/* Defines */
 define('CALENDAR_ID', 'calendar');
 define('CALENDAR_ROOT', PLUGINS_ROOT.'/'.CALENDAR_ID);
 
@@ -15,6 +16,7 @@ define('CALENDAR_VIEWS_ADMIN', PLUGINS_ROOT.'/'.CALENDAR_VIEWS_RELATIVE_ADMIN);
 
 define('CALENDAR_SQL_DATE_FORMAT', 'Y-m-d');
 
+/* Basic information about the plugin */
 Plugin::setInfos(array(
   'id'                    => CALENDAR_ID,
   'title'                 => __('Calendar'),
@@ -27,10 +29,26 @@ Plugin::setInfos(array(
   'update_url'            => 'https://raw.githubusercontent.com/jacekciach/wolfcms-calendar-plugin/master/version.xml'
 ));
 
+/* Setup */
+
+// setup plugin's admin controller
 Plugin::addController('calendar', __('Calendar'), 'admin_view', true);
+
+// setup CalenderEvent model
 AutoLoader::addFile('CalendarEvent', CALENDAR_ROOT.'/models/CalendarEvent.php');
+
+// setup calendar behaviour
 Behavior::add('calendar', CALENDAR_ID.'/behaviour.php');
 
+
+//////////////////////
+/* GLOBAL FUNCTIONS */
+//////////////////////
+
+/** Shows a month calendar
+  * @param $slug Slug of the calendar page. The slug becomes a base for links shown in the calendar.
+  * @param $date Calendar shows this $date's month. Null means "today".
+  */
 function showCalendar($slug, DateTime $date = null) {
   if (is_null($date))
     $date = new DateTime('now');
@@ -61,7 +79,11 @@ function showCalendar($slug, DateTime $date = null) {
   $calendar->display();
 }
 
-function showEvent($event, $show_author = true) {
+/** Shows en event
+  * @param $event An object of CalendarEvent class.
+  * @param $show_author If true, a box with the event's author is shown below the event's description.
+  */
+function showEvent(CalendarEvent $event, $show_author = true) {
   /* Prepare the event's data */
   $vars['id']    = $event->getId();
   $vars['title'] = $event->getTitle();
@@ -85,6 +107,7 @@ function showEvent($event, $show_author = true) {
   $view->display();
 }
 
+/** Shows array of events. Calls showEvent() in a loop, with $show_author = true */
 function showEvents(array $events) {
   foreach ($events as $event)
     showEvent($event);
