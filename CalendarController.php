@@ -46,8 +46,8 @@ class CalendarController extends PluginController {
 
     // Delete event
     public function delete($id) {
-        $notes = CalendarEvent::findByIdFrom('CalendarEvent', $id);
-        $notes->delete();
+        $event = CalendarEvent::findEventById($id);
+        $event->delete();
         Flash::set('success', __('The event has been successfully deleted'));
 
         redirect(get_url('plugin/'.CALENDAR_ID.'/events'));

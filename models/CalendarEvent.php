@@ -5,7 +5,7 @@ if (!defined('IN_CMS')) { exit(); }
 class CalendarEvent extends Record {
     const TABLE_NAME = 'calendar';
 
-    private $id;
+    protected $id; // the field needs to be protected, because it's used by WolfCMS' Record class
     private $created_by_id;
     private $title;
     private $date_from;
