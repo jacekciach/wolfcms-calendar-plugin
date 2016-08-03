@@ -2,8 +2,6 @@
 
 if (!defined('IN_CMS')) { exit(); }
 
-define('SQL_DATE_FORMAT', 'Y-m-d');
-
 class CalendarEvent extends Record {
     const TABLE_NAME = 'calendar';
 
@@ -14,40 +12,35 @@ class CalendarEvent extends Record {
     private $date_to;
     private $description;
 
-    public function checkData() {
-      $this->title = trim($this->title);
-      $this->date_from = trim($this->date_from);
-      $this->date_to = trim($this->date_to);
-      $this->description = trim($this->description);
-
-      if (empty($this->title) || empty($this->date_from))
-        return false;
-
-      return $this->checkDates();
-    }
-
-    public function checkDates() {
-      try {
-        $from = new DateTime($this->date_from);
-      }
-      catch (Exception $e) {
-        return false;
-      }
-
+    private function checkDates() {
       if (!empty($this->date_to)) {
-        try {
-          $to = new DateTime($this->date_to);
-        }
-        catch (Exception $e) {
-          return false;
-        }
 
-        if ($from == $to)
-          $this->date_to = "";
-        else if ($from > $to)
+        if ($this->date_from == $this->date_to)
+          $this->date_to = null;
+        elseif ($this->date_from > $this->date_to)
           return false;
+
       }
       return true;
+    }
+
+    private function checkData() {
+      return !empty($this->title) && !empty($this->date_from) && $this->checkDates();
+    }
+
+    /***********************************************************************************************/
+
+    public function __construct(array $data = null) {
+
+      parent::__construct($data);
+
+      $this->id             = isset($this->id)            ? (int)$this->id                  : null;
+      $this->created_by_id  = isset($this->created_by_id) ? (int)$this->created_by_id       : null;
+      $this->title          = isset($this->title)         ? trim($this->title)              : null;
+      $this->date_from      = isset($this->date_from)     ? new DateTime($this->date_from)  : null;
+      $this->date_to        = isset($this->date_to)       ? new DateTime($this->date_to)    : null;
+      $this->description    = isset($this->description)   ? trim($this->description)        : null;
+
     }
 
     public function getId() {
@@ -84,7 +77,7 @@ class CalendarEvent extends Record {
 
     public function getLength() {
       if (isset($this->date_to))
-        return 1 + date_diff(new DateTime($this->date_from), new DateTime($this->date_to))->days;
+        return 1 + date_diff($this->date_from, $this->date_to)->days;
       else
         return 1;
     }
@@ -97,28 +90,42 @@ class CalendarEvent extends Record {
       return $this->getDescription();
     }
 
+    /***********************************************************************************************/
+
     public function beforeSave() {
-      if ($this->checkData()) {
-        /* if creator's id is known, then just return true */
-        if (empty($this->created_by_id)) {
-          /* if it's not known -- get it */
-          $user_id = AuthUser::getId();
-          if ($user_id === false)
-            return false;
-          else
-            $this->created_by_id = $user_id;
-        }
-        /* everything is ok */
-        return true;
+
+      if (empty($this->created_by_id)) {
+        $user_id = AuthUser::getId();
+        if ($user_id === false)
+          return false;
+        else
+          $this->created_by_id = $user_id;
       }
+
+      if ($this->checkData())
+        return parent::beforeSave();
       else
         return false;
     }
 
+    public function save() {
+      $this->date_from = $this->date_from->format(CALENDAR_SQL_DATE_FORMAT);
+      $this->date_to = $this->date_to->format(CALENDAR_SQL_DATE_FORMAT);
+
+      $result = parent::save();
+
+      $this->date_from = new DateTime($this->date_from);
+      $this->date_to = new DateTime($this->date_to);
+
+      return $result;
+    }
+
+    /***********************************************************************************************/
+
     public static function generateAllEventsBetween(DateTime $date_from, DateTime $date_to) {
       $class_name = get_called_class();
-      $date_from_str = $date_from->format(SQL_DATE_FORMAT);
-      $date_to_str = $date_to->format(SQL_DATE_FORMAT);
+      $date_from_str = $date_from->format(CALENDAR_SQL_DATE_FORMAT);
+      $date_to_str = $date_to->format(CALENDAR_SQL_DATE_FORMAT);
 
       $objects = CalendarEvent::find(array(
         'where' => '(date_from BETWEEN :date_from1 AND :date_to1) OR (date_to BETWEEN :date_from2 AND :date_to2)',
@@ -132,11 +139,11 @@ class CalendarEvent extends Record {
 
       $events = array();
       foreach ($objects as $object) {
-        $date     = new DateTime($object->date_from);
-        $date_end = empty($object->date_to) ? new DateTime($object->date_from) : new DateTime($object->date_to);
+        $date     = clone($object->date_from);
+        $date_end = empty($object->date_to) ? clone($object->date_from) : clone($object->date_to);
         while ($date <= $date_end) {
           $event = clone($object);
-          $event->value = $date->format('Y-m-d');
+          $event->value = $date->format(CALENDAR_SQL_DATE_FORMAT);
           $events[] = $event;
           $date->modify("+1 day");
         } /* while */
@@ -147,7 +154,7 @@ class CalendarEvent extends Record {
     } /* function generateAllEventsBetween */
 
     static public function findEventsByDate(DateTime $date) {
-      $date_str = $date->format(SQL_DATE_FORMAT);
+      $date_str = $date->format(CALENDAR_SQL_DATE_FORMAT);
       return CalendarEvent::find(array(
         'where' => 'date_from = :date1 OR (:date2 BETWEEN date_from AND date_to)',
         'values' => array(

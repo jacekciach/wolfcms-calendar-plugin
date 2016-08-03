@@ -55,7 +55,7 @@ class CalendarTable {
 
     $date->setDate($year, $month, 1);
     $first_day_of_week = ($date->format('w') -1 + self::DAYS) % self::DAYS;
-    $date->modify("-$first_day_of_week day");
+    $date->modify(-$first_day_of_week.' day');
 
     /* Table begin */
     echo "<!-- BEGIN: Calendar -->\n";
@@ -87,7 +87,7 @@ class CalendarTable {
           $day_number = "<span>".$date->format('j')."</span>";
           echo "<td$class>";
           echo "$day_number";
-          $date_string = $date->format('Y-m-d');
+          $date_string = $date->format(CALENDAR_SQL_DATE_FORMAT);
           if (array_key_exists($date_string, $this->events_map)) {
             echo "<ul class=\"events-list\">";
             foreach ($this->events_map[$date_string] as $event)

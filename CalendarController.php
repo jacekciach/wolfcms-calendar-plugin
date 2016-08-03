@@ -62,30 +62,20 @@ class CalendarController extends PluginController {
                 use_helper('Kses');
 
                 /* Prepare the data */
-                $data = $_POST['event'];
-                if (isset($data['id']))
-                  $data['id'] = kses(trim($data['id']), array());
+                $post_data = $_POST['event'];
+                if (isset($post_data['id']))
+                  $post_data['id'] = kses(trim($post_data['id']), array());
 
-                $event = new CalendarEvent();
-
-                if (isset($data['id'])) {
-                  $event->id            = $data['id'];
-                  $event->created_by_id = $data['created_by_id'];
-                }
-
-                $event->title       = $data['title'];
-                $event->date_from   = $data['date_from'];
-                $event->date_to     = $data['date_to'];
-                $event->description = $data['description'];
+                $event = new CalendarEvent($post_data);
 
                 /* Check data and, if correct, save to DB */
-                if ($event->checkData() && $event->save()) {
+                if ($event->save()) {
                   if (isset($data['id']))
                     Flash::set('success', __('The event has been updated.'));
                   else
                     Flash::set('success', __('A new event has been created.'));
 
-                  redirect(get_url('plugin/calendar/events'));
+                  redirect(get_url('plugin/'.CALENDAR_ID.'/events'));
                 }
                 else {
                   Flash::setNow('error', __('There are errors in the form.'));

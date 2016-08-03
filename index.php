@@ -7,6 +7,8 @@ define('CALENDAR_ROOT', PLUGINS_ROOT.'/'.CALENDAR_ID);
 define('CALENDAR_VIEWS_RELATIVE', CALENDAR_ID.'/views');
 define('CALENDAR_VIEWS', PLUGINS_ROOT.'/'.CALENDAR_VIEWS_RELATIVE);
 
+define('CALENDAR_SQL_DATE_FORMAT', 'Y-m-d');
+
 Plugin::setInfos(array(
   'id'                    => CALENDAR_ID,
   'title'                 => __('Calendar'),
@@ -24,6 +26,9 @@ AutoLoader::addFile('CalendarEvent', CALENDAR_ROOT.'/models/CalendarEvent.php');
 Behavior::add('calendar', CALENDAR_ID.'/behaviour.php');
 
 function showCalendar($slug, DateTime $date = null) {
+  if (is_null($date))
+    $date = new DateTime('now');
+
   $date_begin = clone($date);
   $date_begin->modify("first day of this month");
   $date_begin->modify("-1 week");
@@ -32,12 +37,14 @@ function showCalendar($slug, DateTime $date = null) {
   $date_end->modify("last day of this month");
   $date_end->modify("+1 week");
 
+  // generate events map
   $events = CalendarEvent::generateAllEventsBetween($date_begin, $date_end);
   $events_map = array();
   foreach ($events as $event) {
     $events_map[$event->value][] = $event->getTitle();
   }
 
+  // display calendar table
   $calendar = new View(
                     CALENDAR_VIEWS.'/calendar_table',
                     array(
@@ -53,14 +60,12 @@ function showEvent($event, $show_author = true) {
   $vars['id']    = $event->getId();
   $vars['title'] = $event->getTitle();
 
-  $date_from = new DateTime($event->getDateFrom());
-  $vars['date_from'] = strftime("%x", $date_from->getTimestamp());
+  $vars['date_from'] = strftime("%x", $event->getDateFrom()->getTimestamp());
 
   if (empty($event->date_to))
     $vars['date_to'] = null;
   else {
-    $date_to = new DateTime($event->getDateTo());
-    $vars['date_to'] = strftime("%x", $date_to->getTimestamp());
+    $vars['date_to'] = strftime("%x", $event->getDateTo()->getTimestamp());
   }
 
   $vars['days']    = $event->getLength();
