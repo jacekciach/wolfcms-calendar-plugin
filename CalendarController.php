@@ -23,11 +23,11 @@ class CalendarController extends PluginController {
         // date_from
         if (empty($post_data['date_from']))
             $errors['date_from'] = __('Date from is required');
-        elseif (validateDateString($post_data['date_from']) == false)
+        elseif (validateDateString($post_data['date_from'], CALENDAR_DISPLAY_DATE_FORMAT) == false)
             $errors['date_from'] = __('Date from is invalid');
 
         // date_to
-        if (!empty($post_data['date_to']) && validateDateString($post_data['date_to']) == false)
+        if (!empty($post_data['date_to']) && validateDateString($post_data['date_to'], CALENDAR_DISPLAY_DATE_FORMAT) == false)
             $errors['date_to'] = __('Date to is invalid');
 
         return $errors;

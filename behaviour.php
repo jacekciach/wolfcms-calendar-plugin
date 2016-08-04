@@ -45,7 +45,7 @@ class Calendar {
             }
 
             /* A subpage is not found, so try to parse a date and then create an event's page */
-            if (validateDateString($slug)) {
+            if (validateDateString($slug, CALENDAR_SQL_DATE_FORMAT)) {
               $date = new DateTime($slug);
               $events = CalendarEvent::findEventsByDate($date);
               $this->page->title = strftime("%x", $date->getTimestamp()); /* The date should be localized */
