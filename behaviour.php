@@ -48,7 +48,7 @@ class Calendar {
             if (validateDateString($slug, CALENDAR_SQL_DATE_FORMAT)) {
               $date = new DateTime($slug);
               $events = CalendarEvent::findEventsByDate($date);
-              $this->page->title = strftime("%x", $date->getTimestamp()); /* The date should be localized */
+              $this->page->title = $date->format(CALENDAR_DISPLAY_DATE_FORMAT);
               $this->beginCapture();
               showEvents($events);
               $this->endCapture();
