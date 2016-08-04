@@ -168,7 +168,7 @@
 
   <?php
 
-    $calendar = new CalendarTable($base_path, $date, $map);
+    $calendar = new CalendarTable($base_url, $date, $map);
     $calendar->display();
 
   ?>

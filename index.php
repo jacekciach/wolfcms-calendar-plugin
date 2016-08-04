@@ -70,14 +70,14 @@ function showCalendar($slug, DateTime $date = null) {
   }
 
   // display calendar table
-  $calendar = new View(
-                    CALENDAR_VIEWS_FRONT.'/calendar',
-                    array(
-                      'base_path' => get_url($slug),
-                      'date'      => $date,
-                      'map'       => $events_map
-                    ));
-  $calendar->display();
+  $view = new View(
+                CALENDAR_VIEWS_FRONT.'/calendar',
+                array(
+                  'base_url' => get_url($slug),
+                  'date'     => $date,
+                  'map'      => $events_map
+                ));
+  $view->display();
 }
 
 /** Shows en event
