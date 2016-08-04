@@ -21,7 +21,7 @@ if (!defined('IN_CMS')) { exit(); }
 
         <tr class="<?php echo odd_even(); ?>">
             <td><?php echo $event->getId(); ?></td>
-            <td><a href="<?php echo get_url('plugin/calendar/update/'.$event->getId()); ?>"><?php echo $event->getTitle(); ?></a></td>
+            <td><a href="<?php echo get_url('plugin/'.CALENDAR_ID.'/update/'.$event->getId()); ?>"><?php echo $event->getTitle(); ?></a></td>
             <td><?php echo $event->getDateFrom()->format(CALENDAR_DISPLAY_DATE_FORMAT); ?></td>
             <?php if ($event->getDateTo()): ?>
                 <td><?php echo $event->getDateTo()->format(CALENDAR_DISPLAY_DATE_FORMAT); ?></td>
@@ -29,7 +29,7 @@ if (!defined('IN_CMS')) { exit(); }
                 <td></td>
             <?php endif ?>
             <td><?php echo $event->getAuthor(); ?></td>
-            <td><a class="delete-event" href="<?php echo get_url('plugin/calendar/delete/'.$event->getId()); ?>"><img src="<?php echo ICONS_PATH; ?>action-delete-16.png" alt="Delete" /></a></td>
+            <td><a class="delete-event" href="<?php echo get_url('plugin/'.CALENDAR_ID.'/delete/'.$event->getId()); ?>"><img src="<?php echo ICONS_PATH; ?>action-delete-16.png" alt="Delete" /></a></td>
         </tr>
         <?php endforeach ?>
     </table>
