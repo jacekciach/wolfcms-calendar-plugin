@@ -40,6 +40,13 @@ return array(
     'Date from is required'                         => 'Het veld is verplicht', // translated with translate.google.com
     'Date from is invalid'                          => 'Het veld is ongeldig',  // translated with translate.google.com
     'Date to is invalid'                            => 'Het veld is ongeldig',  // translated with translate.google.com
+    'Monday'                                        => 'Maandag',               // translated with translate.google.com
+    'Tuesday'                                       => 'Dinsdag',               // translated with translate.google.com
+    'Wednesday'                                     => 'Woensdag',              // translated with translate.google.com
+    'Thursday'                                      => 'Donderdag',             // translated with translate.google.com
+    'Friday'                                        => 'Vrijdag',               // translated with translate.google.com
+    'Saturday'                                      => 'Zaterdag',              // translated with translate.google.com
+    'Sunday'                                        => 'Zondag',                // translated with translate.google.com
 );
 
 ?>

@@ -40,6 +40,13 @@ return array(
     'Date from is required'                         => '<b>Data</b> wydarzenia jest wymagana',
     'Date from is invalid'                          => '<b>Data</b> wydarzenia jest niepoprawna',
     'Date to is invalid'                            => '<b>Data końca</b> wydarzenia jest niepoprawna',
+    'Monday'                                        => 'Poniedziałek',
+    'Tuesday'                                       => 'Wtorek',
+    'Wednesday'                                     => 'Środa',
+    'Thursday'                                      => 'Czwartek',
+    'Friday'                                        => 'Piątek',
+    'Saturday'                                      => 'Sobota',
+    'Sunday'                                        => 'Niedziela',
 );
 
 ?>

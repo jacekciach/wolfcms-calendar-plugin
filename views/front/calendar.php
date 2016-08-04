@@ -10,6 +10,8 @@
     const PHP_SATURDAY = 6;
     const PHP_SUNDAY   = 0;
 
+    const DAY_SHORT_NAME_LENGTH = 3;
+
     private $day_names;
 
     private $date;
@@ -18,20 +20,17 @@
 
     /**********************************************************************************************/
 
-    private static function getDaysNames($day_name_format)
+    private static function getDaysNames()
     {
-      /* Based on:
-       * http://stackoverflow.com/questions/2536748/how-to-create-array-of-a-week-days-name-in-php
-       * http://stackoverflow.com/a/2536802
-       */
-
-      $names = array();
-      $date = new DateTime("next Monday");
-      for ($i = 0; $i < self::DAYS; ++$i) {
-        $names[] = strftime($day_name_format, $date->getTimestamp());
-        $date->modify("+1 day");
-      }
-      return $names;
+      return array(
+        0 => __('Monday'),
+        1 => __('Tuesday'),
+        2 => __('Wednesday'),
+        3 => __('Thursday'),
+        4 => __('Friday'),
+        5 => __('Saturday'),
+        6 => __('Sunday')
+      );
     }
 
     /**********************************************************************************************/
@@ -89,7 +88,7 @@
           <thead>
             <tr>
               <?php for ($col = 0; $col < self::COLS; ++$col): ?>
-                <th><?php echo $this->day_names[$col]; ?></th>
+                <th><?php echo substr($this->day_names[$col], 0, self::DAY_SHORT_NAME_LENGTH); ?></th>
               <?php endfor ?>
             </tr>
           <thead>
@@ -157,7 +156,7 @@
       $this->date = $date;
       $this->events_map = $events_map;
 
-      $this->day_names = self::getDaysNames("%a");
+      $this->day_names = self::getDaysNames();
     }
 
   } /* class CalendarTable */

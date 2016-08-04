@@ -40,6 +40,13 @@ return array(
     'Date from is required'                         => 'The field is required',
     'Date from is invalid'                          => 'The field is invalid',
     'Date to is invalid'                            => 'The field is invalid',
+    'Monday'                                        => 'Monday',
+    'Tuesday'                                       => 'Tuesday',
+    'Wednesday'                                     => 'Wednesday',
+    'Thursday'                                      => 'Thursday',
+    'Friday'                                        => 'Friday',
+    'Saturday'                                      => 'Saturday',
+    'Sunday'                                        => 'Sunday',
 );
 
 ?>
