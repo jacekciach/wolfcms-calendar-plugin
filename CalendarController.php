@@ -4,7 +4,8 @@ if (!defined('IN_CMS')) { exit(); }
 
 class CalendarController extends PluginController {
 
-    private static function _checkPermission() {
+    private static function _checkPermission()
+    {
         AuthUser::load();
         if (!AuthUser::isLoggedIn()) {
             redirect(get_url('login'));
@@ -32,7 +33,8 @@ class CalendarController extends PluginController {
         return $errors;
     }
 
-    private function display_update_view(array $data) {
+    private function display_update_view(array $data)
+    {
         // prepare form fields values
         if (isset($data['post_data']))
             $form_values = $data['post_data'];
@@ -104,7 +106,8 @@ class CalendarController extends PluginController {
         $this->display_update_view($processed_data);
     }
 
-    public function __construct() {
+    public function __construct()
+    {
         self::_checkPermission();
 
         $this->setLayout('backend');
@@ -112,24 +115,28 @@ class CalendarController extends PluginController {
     }
 
     // Take me to all events
-    public function index() {
+    public function index()
+    {
         $this->events();
     }
 
     // List all events
-    public function events() {
+    public function events()
+    {
         $events = CalendarEvent::find(array('order' => 'date_from DESC, date_to DESC'));
         $this->display(CALENDAR_VIEWS_RELATIVE_ADMIN.'/events', array('events' => $events));
     }
 
     // Add new event
-    public function add() {
+    public function add()
+    {
         $event = new CalendarEvent();
         $this->process_update($event);
     }
 
     // Edit an event
-    public function update($id) {
+    public function update($id)
+    {
         $event = CalendarEvent::findEventById( (int)$id );
         if (empty($event))
             redirect(get_url('plugin/'.CALENDAR_ID.'/add')); // if $id is invalid -- redirect to 'add event'
@@ -137,7 +144,8 @@ class CalendarController extends PluginController {
     }
 
     // Delete event
-    public function delete($id) {
+    public function delete($id)
+    {
         $event = CalendarEvent::findEventById($id);
         $event->delete();
         Flash::set('success', __('The event has been successfully deleted'));
@@ -146,7 +154,8 @@ class CalendarController extends PluginController {
     }
 
     // Documentation
-    public function documentation() {
+    public function documentation()
+    {
         $this->display(CALENDAR_VIEWS_RELATIVE_ADMIN.'/documentation');
     }
 

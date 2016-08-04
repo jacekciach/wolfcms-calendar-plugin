@@ -50,7 +50,8 @@ Behavior::add('calendar', CALENDAR_ID.'/behaviour.php');
   * @param $slug Slug of the calendar page. The slug becomes a base for links shown in the calendar.
   * @param $date Calendar shows this $date's month. Null means "today".
   */
-function showCalendar($slug, DateTime $date = null) {
+function showCalendar($slug, DateTime $date = null)
+{
   if (is_null($date))
     $date = new DateTime('now');
 
@@ -84,7 +85,8 @@ function showCalendar($slug, DateTime $date = null) {
   * @param $event An object of CalendarEvent class.
   * @param $show_author If true, a box with the event's author is shown below the event's description.
   */
-function showEvent(CalendarEvent $event, $show_author = true) {
+function showEvent(CalendarEvent $event, $show_author = true)
+{
   /* Display an event */
   $view = new View(CALENDAR_VIEWS_FRONT.'/event', array(
     'event'       => $event,
@@ -94,7 +96,8 @@ function showEvent(CalendarEvent $event, $show_author = true) {
 }
 
 /** Shows array of events. Calls showEvent() in a loop, with $show_author = true */
-function showEvents(array $events) {
+function showEvents(array $events)
+{
   foreach ($events as $event)
     showEvent($event);
 }

@@ -13,7 +13,8 @@ class CalendarEvent extends Record {
     protected $date_to;
     protected $description;
 
-    private function checkDates() {
+    private function checkDates()
+    {
       if (!empty($this->date_to)) {
 
         if ($this->date_from == $this->date_to)
@@ -31,8 +32,8 @@ class CalendarEvent extends Record {
 
     /***********************************************************************************************/
 
-    public function __construct(array $data = null) {
-
+    public function __construct(array $data = null)
+    {
       parent::__construct($data);
 
       $this->id             = isset($this->id)            ? (int)$this->id                  : null;
@@ -44,15 +45,18 @@ class CalendarEvent extends Record {
 
     }
 
-    public function getId() {
+    public function getId()
+    {
       return $this->id;
     }
 
-    public function getAuthorID() {
+    public function getAuthorID()
+    {
       return $this->created_by_id;
     }
 
-    public function getAuthor() {
+    public function getAuthor()
+    {
       if (empty($this->created_by_id))
         return null;
       else {
@@ -64,36 +68,43 @@ class CalendarEvent extends Record {
 	    }
     }
 
-    public function getTitle() {
+    public function getTitle()
+    {
       return $this->title;
     }
 
-    public function getDateFrom() {
+    public function getDateFrom()
+    {
       return $this->date_from;
     }
 
-    public function getDateTo() {
+    public function getDateTo()
+    {
       return $this->date_to;
     }
 
-    public function getLength() {
+    public function getLength()
+    {
       if (isset($this->date_to))
         return 1 + date_diff($this->date_from, $this->date_to)->days;
       else
         return 1;
     }
 
-    public function getDescription() {
+    public function getDescription()
+    {
       return $this->description;
     }
 
-    public function getContent() {
+    public function getContent()
+    {
       return $this->getDescription();
     }
 
     /***********************************************************************************************/
 
-    public function beforeSave() {
+    public function beforeSave()
+    {
 
       if (empty($this->created_by_id)) {
         $user_id = AuthUser::getId();
@@ -109,7 +120,8 @@ class CalendarEvent extends Record {
         return false;
     }
 
-    public function save() {
+    public function save()
+    {
       if (isset($this->date_from)) $this->date_from = $this->date_from->format(CALENDAR_SQL_DATE_FORMAT);
       if (isset($this->date_to))   $this->date_to   = $this->date_to->format(CALENDAR_SQL_DATE_FORMAT);
 
@@ -123,7 +135,8 @@ class CalendarEvent extends Record {
 
     /***********************************************************************************************/
 
-    public static function generateAllEventsBetween(DateTime $date_from, DateTime $date_to) {
+    public static function generateAllEventsBetween(DateTime $date_from, DateTime $date_to)
+    {
       $class_name = get_called_class();
       $date_from_str = $date_from->format(CALENDAR_SQL_DATE_FORMAT);
       $date_to_str = $date_to->format(CALENDAR_SQL_DATE_FORMAT);
@@ -154,7 +167,8 @@ class CalendarEvent extends Record {
 
     } /* function generateAllEventsBetween */
 
-    static public function findEventsByDate(DateTime $date) {
+    static public function findEventsByDate(DateTime $date)
+    {
       $date_str = $date->format(CALENDAR_SQL_DATE_FORMAT);
       return CalendarEvent::find(array(
         'where' => 'date_from = :date1 OR (:date2 BETWEEN date_from AND date_to)',
@@ -165,7 +179,8 @@ class CalendarEvent extends Record {
       ));
     }
 
-    static public function findEventById($id) {
+    static public function findEventById($id)
+    {
       return CalendarEvent::findById($id);
     }
 }

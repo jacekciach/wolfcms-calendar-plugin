@@ -7,21 +7,25 @@ class Calendar {
     private $page;
     private $params;
 
-    private function beginCapture() {
+    private function beginCapture()
+    {
       ob_start();
     }
 
-    private function endCapture() {
+    private function endCapture()
+    {
       $this->page->part->body->content_html = ob_get_contents();
       ob_end_clean();
     }
 
-    private function pageNotFound() {
+    private function pageNotFound()
+    {
       pageNotFound();
       exit();
     }
 
-    public function __construct(&$page, $params) {
+    public function __construct(&$page, $params)
+    {
         $this->page   = & $page;
         $this->params = $params;
 

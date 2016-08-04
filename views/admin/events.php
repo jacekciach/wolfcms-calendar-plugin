@@ -35,7 +35,9 @@ if (!defined('IN_CMS')) { exit(); }
     </table>
 
 <script>
-  function onDeleteEventClick() {
+
+  function onDeleteEventClick()
+  {
     var question = "<?php echo __("Are you sure you want to delete this event?"); ?>";
     if (confirm(question))
       return true;
@@ -44,4 +46,5 @@ if (!defined('IN_CMS')) { exit(); }
   }
 
   $("a.delete-event").click(onDeleteEventClick);
+
 </script>
