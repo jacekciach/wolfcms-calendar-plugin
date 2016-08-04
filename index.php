@@ -85,26 +85,11 @@ function showCalendar($slug, DateTime $date = null) {
   * @param $show_author If true, a box with the event's author is shown below the event's description.
   */
 function showEvent(CalendarEvent $event, $show_author = true) {
-  /* Prepare the event's data */
-  $vars['id']    = $event->getId();
-  $vars['title'] = $event->getTitle();
-
-  $vars['date_from'] = strftime("%x", $event->getDateFrom()->getTimestamp());
-
-  if (empty($event->date_to))
-    $vars['date_to'] = null;
-  else {
-    $vars['date_to'] = strftime("%x", $event->getDateTo()->getTimestamp());
-  }
-
-  $vars['days']    = $event->getLength();
-  $vars['author']  = $event->getAuthor();
-  $vars['content'] = $event->getContent();
-
-  $vars['show_author'] = $show_author;
-
   /* Display an event */
-  $view = new View(CALENDAR_VIEWS_FRONT.'/event', $vars);
+  $view = new View(CALENDAR_VIEWS_FRONT.'/event', array(
+    'event'       => $event,
+    'show_author' => $show_author
+  ));
   $view->display();
 }
 
