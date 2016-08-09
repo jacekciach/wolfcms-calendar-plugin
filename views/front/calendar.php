@@ -13,6 +13,7 @@
     const DAY_SHORT_NAME_LENGTH = 3;
 
     private $day_names;
+    private $month_names;
 
     private $date;
     private $events_map;
@@ -33,6 +34,24 @@
       );
     }
 
+    private static function getMonthsNames()
+    {
+      return array(
+         1 => __('January'),
+         2 => __('February'),
+         3 => __('March'),
+         4 => __('April'),
+         5 => __('May'),
+         6 => __('June'),
+         7 => __('July'),
+         8 => __('August'),
+         9 => __('September'),
+        10 => __('October'),
+        11 => __('November'),
+        12 => __('December'),
+      );
+    }
+
     /**********************************************************************************************/
 
     private function displayHeader()
@@ -49,7 +68,7 @@
 
           <span class="prev">
             <a href="<?php printf('%s/%s/%s', $this->base_url, $date_prev_month->format('Y'), $date_prev_month->format('m')); ?>">
-              <?php echo $date_prev_month->format('F Y'); ?>
+              <?php echo $this->month_names[$date_prev_month->format('n')].' '.$date_prev_month->format('Y'); ?>
             </a>
           </span>
 
@@ -57,7 +76,7 @@
 
           <span class="next">
             <a href="<?php printf('%s/%s/%s', $this->base_url, $date_next_month->format('Y'), $date_next_month->format('m')); ?>">
-              <?php echo $date_next_month->format('F Y'); ?>
+              <?php echo $this->month_names[$date_next_month->format('n')].' '.$date_next_month->format('Y'); ?>
             </a>
           </span>
 
@@ -157,6 +176,7 @@
       $this->events_map = $events_map;
 
       $this->day_names = self::getDaysNames();
+      $this->month_names = self::getMonthsNames();
     }
 
   } /* class CalendarTable */

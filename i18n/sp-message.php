@@ -47,6 +47,18 @@ return array(
     'Friday'                                        => 'Viernes',                 // translated with translate.google.com
     'Saturday'                                      => 'Sábado',                  // translated with translate.google.com
     'Sunday'                                        => 'Domingo',                 // translated with translate.google.com
+    'January'                                       => 'Enero',                   // translated with translate.google.com
+    'February'                                      => 'Febrero',                 // translated with translate.google.com
+    'March'                                         => 'Marzo',                   // translated with translate.google.com
+    'April'                                         => 'Abril',                   // translated with translate.google.com
+    'May'                                           => 'Mayo',                    // translated with translate.google.com
+    'June'                                          => 'Junio',                   // translated with translate.google.com
+    'July'                                          => 'Julio',                   // translated with translate.google.com
+    'August'                                        => 'Agosto',                  // translated with translate.google.com
+    'September'                                     => 'Septiembre',              // translated with translate.google.com
+    'October'                                       => 'Octubre',                 // translated with translate.google.com
+    'November'                                      => 'Noviembre',               // translated with translate.google.com
+    'December'                                      => 'Diciembre',               // translated with translate.google.com
 );
 
 ?>

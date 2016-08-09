@@ -47,6 +47,18 @@ return array(
     'Friday'                                        => 'Vrijdag',               // translated with translate.google.com
     'Saturday'                                      => 'Zaterdag',              // translated with translate.google.com
     'Sunday'                                        => 'Zondag',                // translated with translate.google.com
+    'January'                                       => 'Januari',               // translated with translate.google.com
+    'February'                                      => 'Februari',              // translated with translate.google.com
+    'March'                                         => 'Maart',                 // translated with translate.google.com
+    'April'                                         => 'April',                 // translated with translate.google.com
+    'May'                                           => 'Mei',                   // translated with translate.google.com
+    'June'                                          => 'Juni',                  // translated with translate.google.com
+    'July'                                          => 'Juli',                  // translated with translate.google.com
+    'August'                                        => 'Augustus',              // translated with translate.google.com
+    'September'                                     => 'September',             // translated with translate.google.com
+    'October'                                       => 'Oktober',               // translated with translate.google.com
+    'November'                                      => 'November',              // translated with translate.google.com
+    'December'                                      => 'December',              // translated with translate.google.com
 );
 
 ?>
