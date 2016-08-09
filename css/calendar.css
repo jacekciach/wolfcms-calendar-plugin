@@ -61,7 +61,6 @@
   font-weight: normal;
   border: 1px solid;
   border-radius: 5px;
-  background-color: #ffffaa;
 }
 
 #calendar ul.events-list li a {
@@ -70,7 +69,7 @@
   text-decoration: none;
 }
 
-#calendar ul.events-list li a:hover {
+#calendar ul.events-list li:hover {
   background-color: #ffff00;
 }
 
@@ -85,4 +84,32 @@
 
 #calendar h3 span.next {
   margin-left: 10px;
+}
+
+#calendar .event-color-0 {
+  background-color: #ffffaa;
+}
+
+#calendar .event-color-1 {
+  background-color: #ffaaff;
+}
+
+#calendar .event-color-2 {
+  background-color: #aaffff;
+}
+
+#calendar .event-color-3 {
+  background-color: #00ffaa;
+}
+
+#calendar .event-color-4 {
+  background-color: #ffdd00;
+}
+
+#calendar .event-color-5 {
+  background-color: #ffeeaa;
+}
+
+#calendar .event-color-6 {
+  background-color: #aaff00;
 }

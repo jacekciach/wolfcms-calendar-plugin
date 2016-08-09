@@ -136,9 +136,9 @@
                     <?php if (array_key_exists($date_string, $this->events_map)): ?>
                       <ul class="events-list">
 
-                        <?php foreach ($this->events_map[$date_string] as $event_title): ?>
-                          <li>
-                            <a href="<?php printf('%s/%s', $this->base_url, $date_string); ?>"><?php echo $event_title; ?></a>
+                        <?php foreach ($this->events_map[$date_string] as $event): ?>
+                          <li class="event-color-<?php echo ($event->getId()) % self::COLS; ?>">
+                            <a href="<?php printf('%s/%s', $this->base_url, $date_string); ?>"><?php echo $event->getTitle(); ?></a>
                           </li>
                         <?php endforeach ?>
 

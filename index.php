@@ -67,7 +67,7 @@ function showCalendar($slug, DateTime $date = null)
   $events = CalendarEvent::generateAllEventsBetween($date_begin, $date_end);
   $events_map = array();
   foreach ($events as $event) {
-    $events_map[$event->value][] = $event->getTitle();
+    $events_map[$event->value][] = $event;
   }
 
   // display calendar table
