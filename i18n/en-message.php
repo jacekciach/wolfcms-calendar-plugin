@@ -40,6 +40,8 @@ return array(
     'Date from is required'                         => 'The field is required',
     'Date from is invalid'                          => 'The field is invalid',
     'Date to is invalid'                            => 'The field is invalid',
+
+    // days of the week
     'Monday'                                        => 'Monday',
     'Tuesday'                                       => 'Tuesday',
     'Wednesday'                                     => 'Wednesday',
@@ -47,6 +49,8 @@ return array(
     'Friday'                                        => 'Friday',
     'Saturday'                                      => 'Saturday',
     'Sunday'                                        => 'Sunday',
+
+    // months
     'January'                                       => 'January',
     'February'                                      => 'February',
     'March'                                         => 'March',

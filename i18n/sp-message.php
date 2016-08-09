@@ -40,6 +40,8 @@ return array(
     'Date from is required'                         => 'El campo es obligatorio', // translated with translate.google.com
     'Date from is invalid'                          => 'El campo no es válido',   // translated with translate.google.com
     'Date to is invalid'                            => 'El campo no es válido',   // translated with translate.google.com
+
+    // days of the week
     'Monday'                                        => 'Lunes',                   // translated with translate.google.com
     'Tuesday'                                       => 'Martes',                  // translated with translate.google.com
     'Wednesday'                                     => 'Miércoles',               // translated with translate.google.com
@@ -47,6 +49,8 @@ return array(
     'Friday'                                        => 'Viernes',                 // translated with translate.google.com
     'Saturday'                                      => 'Sábado',                  // translated with translate.google.com
     'Sunday'                                        => 'Domingo',                 // translated with translate.google.com
+
+    // months
     'January'                                       => 'Enero',                   // translated with translate.google.com
     'February'                                      => 'Febrero',                 // translated with translate.google.com
     'March'                                         => 'Marzo',                   // translated with translate.google.com
