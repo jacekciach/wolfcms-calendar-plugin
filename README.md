@@ -21,7 +21,7 @@ The plugin comes with a default cascade style sheet file, designed and tested on
 
 All views are translatable. There are four translations included: Polish, English, Dutch and Spanish.
 
-\* the calendar view should be used on the top calendar behaviour page; but it's not a requirement
+\* the calendar view should be used on the calendar behaviour page; but it's not a requirement
 
 # Installation
 
