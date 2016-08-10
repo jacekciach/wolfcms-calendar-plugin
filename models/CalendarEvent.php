@@ -141,13 +141,13 @@ class CalendarEvent extends Record {
       $date_from_str = $date_from->format(CALENDAR_SQL_DATE_FORMAT);
       $date_to_str = $date_to->format(CALENDAR_SQL_DATE_FORMAT);
 
+      /* Let (x,y) and (a,b) be intervals. We assume, by definition, that x <= y and a <= b.
+         Then intersection of (x,y) and (a,b) is not empty iff (y >= a AND b >= x) */
       $objects = CalendarEvent::find(array(
-        'where' => '(date_from BETWEEN :date_from1 AND :date_to1) OR (date_to BETWEEN :date_from2 AND :date_to2)',
+        'where' => 'COALESCE(date_to, date_from) >= :A_date_from  AND :B_date_to >= date_from', // y >= a AND b >= x
         'values' => array(
-          'date_from1'  => $date_from_str,
-          'date_to1'    => $date_to_str,
-          'date_from2'  => $date_from_str,
-          'date_to2'    => $date_to_str
+          'A_date_from'  => $date_from_str,
+          'B_date_to'    => $date_to_str,
         )
       ));
 
