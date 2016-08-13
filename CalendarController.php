@@ -114,27 +114,37 @@ class CalendarController extends PluginController {
         $this->assignToLayout('sidebar', new View(CALENDAR_VIEWS_ADMIN.'/sidebar'));
     }
 
-    // Take me to all events
+    // Controler's actions
+
+    /**
+     * Alias of events()
+     */
     public function index()
     {
         $this->events();
     }
 
-    // List all events
+    /**
+     * Controller's action: List all events.
+     */
     public function events()
     {
         $events = CalendarEvent::find(array('order' => 'date_from DESC, date_to DESC'));
         $this->display(CALENDAR_VIEWS_RELATIVE_ADMIN.'/events', array('events' => $events));
     }
 
-    // Add new event
+    /**
+     * Controller's action: Add new event.
+     */
     public function add()
     {
         $event = new CalendarEvent();
         $this->process_update($event);
     }
 
-    // Edit an event
+    /**
+     * Controller's action: Edit an event.
+     */
     public function update($id)
     {
         $event = CalendarEvent::findEventById( (int)$id );
@@ -143,7 +153,9 @@ class CalendarController extends PluginController {
         $this->process_update($event);
     }
 
-    // Delete event
+    /**
+     * Controller's action: Delete event.
+     */
     public function delete($id)
     {
         $event = CalendarEvent::findEventById($id);
@@ -153,7 +165,9 @@ class CalendarController extends PluginController {
         redirect(get_url('plugin/'.CALENDAR_ID.'/events'));
     }
 
-    // Documentation
+    /**
+     * Controller's action: Show documentation.
+     */
     public function documentation()
     {
         $this->display(CALENDAR_VIEWS_RELATIVE_ADMIN.'/documentation');

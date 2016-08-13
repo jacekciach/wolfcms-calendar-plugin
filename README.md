@@ -30,4 +30,3 @@ All views are translatable. There are four translations included: Polish, Englis
 3. Insert to your layout (change the path, if needed):
 `<link rel="stylesheet" href="<?php echo THEMES_PATH; ?>wolf/calendar.css" type="text/css">`
 4. Enable the plugin in the Administration Panel.
-5. Works!

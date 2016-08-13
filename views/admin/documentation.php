@@ -17,18 +17,17 @@ ol li pre {
 
 <h1><?php echo __('Documentation'); ?></h1>
 
-<h2>Installation</h2>
+<h2>Quick How-To</h2>
+
+<h3>Setting up CSS</h3>
 <ol>
-    <li>Copy plugin's files to <b>wolf/plugins/calendar/</b></li>
     <li>Copy <b>css/calendar.css</b> to your theme folder, for example <b>public/themes/wolf/</b></li>
     <li>Insert to your layout (change the path, if needed):
         <pre>&lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;?php echo THEMES_PATH; ?&gt;wolf/calendar.css&quot; type=&quot;text/css&quot;&gt;</pre>
     </li>
-    <li>Enable the plugin in the Administration Panel.</li>
-    <li>Works!</li>
 </ol>
+<br>
 
-<h2>Quick How-To</h2>
 <h3>Adding events</h3>
 <ul>
     <li>Events can be added from the Calendar tab in the admin backend.</li>
@@ -37,7 +36,7 @@ ol li pre {
 </ul>
 <br>
 
-<h3>Configuration of the frontend</h3>
+<h3>Setting up the frontend</h3>
 <ol>
     <li>Make a subpage of your home page.</li>
     <li>Name the subpage Events, Calendar, whatever you want.</li>

@@ -5,4 +5,3 @@
    <link rel="stylesheet" href="<?php echo THEMES_PATH; ?>wolf/calendar.css" type="text/css">
 
 4. Enable the plugin in the Administration Panel.
-5. Works!

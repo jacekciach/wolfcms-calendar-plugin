@@ -2,6 +2,12 @@
 
 if (!defined('IN_CMS')) { exit(); }
 
+/**
+  * A model of calendar event.
+  *
+  * This class is **NOT** a part of the public API.
+  * Its fields and methods can be changed in any version of the plugin.
+  */
 class CalendarEvent extends Record {
     const TABLE_NAME = 'calendar';
 

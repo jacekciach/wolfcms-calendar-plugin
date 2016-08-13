@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file index.php
+ *
+ */
+
 if (!defined('IN_CMS')) { exit(); }
 
 /* Defines */
@@ -46,10 +51,12 @@ Behavior::add('calendar', CALENDAR_ID.'/behaviour.php');
 /* GLOBAL FUNCTIONS */
 //////////////////////
 
-/** Shows a month calendar
-  * @param $slug Slug of the calendar page. The slug becomes a base for links shown in the calendar.
-  * @param $date Calendar shows this $date's month. Null means "today".
-  */
+/**
+ * Shows a month calendar.
+ *
+ * @param string   $slug  slug of the calendar page, the slug becomes a base for links shown in the calendar
+ * @param DateTime $date  calendar shows this $date's month, null means "today"; the day of the month is ignored
+ */
 function showCalendar($slug, DateTime $date = null)
 {
   if (is_null($date))
@@ -81,10 +88,12 @@ function showCalendar($slug, DateTime $date = null)
   $view->display();
 }
 
-/** Shows en event
-  * @param $event An object of CalendarEvent class.
-  * @param $show_author If true, a box with the event's author is shown below the event's description.
-  */
+/**
+ * Shows en event.
+ *
+ * @param CalendarEvent $event        object of CalendarEvent class
+ * @param boolean       $show_author  if true, a box with the event's author is shown below the event's description
+ */
 function showEvent(CalendarEvent $event, $show_author = true)
 {
   /* Display an event */
@@ -95,17 +104,24 @@ function showEvent(CalendarEvent $event, $show_author = true)
   $view->display();
 }
 
-/** Shows array of events. Calls showEvent() in a loop, with $show_author = true */
+/**
+ * Calls showEvent() in a loop, with $show_author = true
+ *
+ * @param array $events array of events
+ * @see showEvent()
+ */
 function showEvents(array $events)
 {
   foreach ($events as $event)
     showEvent($event);
 }
 
-/** Validates if a string has a specific format and is a valid date
-  * @param $date_str a string to be validated
-  * @param $format date format
-  * @return true/false
+/**
+  * Validates if a string has a specific format and is a valid date
+  *
+  * @param string $date_str   string to be validated
+  * @param string $format     date format, format accepted by PHP's date() @see http://php.net/manual/en/function.date.php
+  * @retval boolean true if the string is a date and has the required format
   */
 function validateDateString($date_str, $format)
 {
