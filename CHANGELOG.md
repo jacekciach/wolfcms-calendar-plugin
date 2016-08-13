@@ -14,7 +14,6 @@
  - added a datepicker to date fields in event add/update form in admin-panel,
  - removed the use of the DB stored procedure,
  - added `README.md`,
-
  - refactored almost all of the plugin's code.
 
 
