@@ -1,4 +1,4 @@
-# Description
+# Plugin description
 
 The plugins lets to maintain **a simple events list** and to show the event(s) in the frontend.
 
@@ -13,7 +13,7 @@ The plugin also, or maybe first of all, **adds a _calendar_ behaviour**.
 
 _Calendar_ behaviour lets to show events in the particular day (similar to the _Archive_ behaviour).
 
-With the calendar plugin one can show a clickable calendar view\*. Events are presented on the view with boxes in appropriate days. The calendar behaviour lets to "travel" in the past and in the future.
+With the calendar plugin one can show a clickable calendar view. Events are presented on the view with boxes in appropriate days. The calendar behaviour lets to "travel" in the past and in the future.
 
 Clicking on a day with an event redirects to a "the day" page, which lists all events (title, dates, description) from that day. "The day" page can be easy customized with the standard WolfCMS subpage system.
 
@@ -21,9 +21,8 @@ The plugin comes with a default cascade style sheet file, designed and tested on
 
 All views are translatable. There are four translations included: Polish, English, Dutch and Spanish.
 
-\* the calendar view should be used on the calendar behaviour page; but it's not a requirement
 
-# Installation
+## Installation
 
 1. Copy plugin's files to `wolf/plugins/calendar/`
 2. Copy `css/calendar.css` to your theme folder, for example `public/themes/wolf/`
