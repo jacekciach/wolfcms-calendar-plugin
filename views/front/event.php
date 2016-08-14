@@ -8,8 +8,8 @@ if (!defined('IN_CMS')) { exit(); }
 <div class="event" id="event<?php echo $event->getId(); ?>">
 
   <h3>
-    <?php echo $event->getDateFrom()->format(CALENDAR_DISPLAY_DATE_FORMAT); ?><?php if ($event->getDateTo()) echo ' '.__('to').' '.$event->getDateTo()->format(CALENDAR_DISPLAY_DATE_FORMAT); ?>:
-    <?php echo $event->getTitle();; ?>
+    <?php echo $event->getTitle(); ?>
+    (<?php echo $event->getDateFrom()->format(CALENDAR_DISPLAY_DATE_FORMAT); ?><?php if ($event->getDateTo()) echo ' &ndash; '.$event->getDateTo()->format(CALENDAR_DISPLAY_DATE_FORMAT); ?>)
   </h3>
 
   <p>
