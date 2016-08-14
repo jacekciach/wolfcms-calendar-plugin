@@ -131,18 +131,20 @@
 
                   <td class="<?php echo $td_class; ?>">
 
-                    <span><?php echo $date->format('j'); ?></span>
                     <?php $date_string = $date->format(CALENDAR_SQL_DATE_FORMAT); ?>
                     <?php if (array_key_exists($date_string, $this->events_map)): ?>
+                      <span><a href="<?php printf('%s/%s', $this->base_url, $date_string); ?>"><?php echo $date->format('j'); ?></a></span>
                       <ul class="events-list">
 
                         <?php foreach ($this->events_map[$date_string] as $event): ?>
                           <li class="event-color-<?php echo ($event->getId()) % self::COLS; ?>">
-                            <a href="<?php printf('%s/%s', $this->base_url, $date_string); ?>"><?php echo $event->getTitle(); ?></a>
+                            <a href="<?php printf('%s/%s', $this->base_url, $event->getId()); ?>"><?php echo $event->getTitle(); ?></a>
                           </li>
                         <?php endforeach ?>
 
                       </ul>
+                    <?php else: ?>
+                      <span><?php echo $date->format('j'); ?></span>
                     <?php endif ?>
 
                   </td>

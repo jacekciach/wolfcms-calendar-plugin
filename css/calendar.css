@@ -26,6 +26,10 @@
   vertical-align: top;
 }
 
+#calendar td a {
+  color: #000000;
+}
+
 #calendar .day-normal {
 }
 

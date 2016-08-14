@@ -45,18 +45,22 @@ class Calendar {
             /* We try to find a subpage of the calendar page, so the event's page can be customized */
             $page_found = Page::findBySlug($slug, $this->page, true);
             /* A subpage is found, so display it */
-            if (is_a($page_found, "Page")) {
+            if (is_a($page_found, "Page"))
               $this->page = $page_found;
-              break; // go outside the switch
-            }
-
             /* A subpage is not found, so try to parse a date and then create an event's page */
-            if (validateDateString($slug, CALENDAR_SQL_DATE_FORMAT)) {
+            elseif (validateDateString($slug, CALENDAR_SQL_DATE_FORMAT)) {
               $date = new DateTime($slug);
               $events = CalendarEvent::findEventsByDate($date);
               $this->page->title = $date->format(CALENDAR_DISPLAY_DATE_FORMAT);
               $this->beginCapture();
               showEvents($events);
+              $this->endCapture();
+            }
+            /* Or maybe it's an event Id? */
+            elseif (is_numeric($slug) && ($event = CalendarEvent::findById((int)$slug))) {
+              $this->page->title = $event->getTitle();
+              $this->beginCapture();
+              showEvent($event);
               $this->endCapture();
             }
             else

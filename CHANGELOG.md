@@ -1,10 +1,12 @@
 # CHANGELOG
 
 ## 1.0.0   (2016-08)
+ - an event in the calendar table links to "this event" page, instead of "the day" page,
+ - a number of a day in the calendar table links to "the day" page,
  - added `CHANGELOG.md`,
  - improved documentation,
  - fixed the bug that caused wrong display of long events in the calendar table,
- - different events in the calendar table have different colors,
+ - different events in the calendar table have different colors (up to seven colors),
  - names of days of the week and names of month are translatable,
  - dates in a title of page displayed with *calendar* behaviour have fixed (`YYYY-MM-DD`) format,
  - added validation in event add/update form in admin-panel,
