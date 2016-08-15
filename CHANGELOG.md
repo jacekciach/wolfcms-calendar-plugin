@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.1.0 (2016-08-xy)
+## 1.1.0 (2016-08-15)
  - refactored index.php, global functions were marked as deprecated,
  - rewrote CSS into SCSS.
 
