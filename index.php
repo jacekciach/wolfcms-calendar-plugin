@@ -27,7 +27,7 @@ Plugin::setInfos(array(
   'id'                    => CALENDAR_ID,
   'title'                 => __('Calendar'),
   'description'           => __('Calendar'),
-  'version'               => '1.0.0',
+  'version'               => '1.1.0',
   'license'               => 'GPL',
   'author'                => 'Jacek Ciach',
   'require_wolf_version'  => '0.8.0',
