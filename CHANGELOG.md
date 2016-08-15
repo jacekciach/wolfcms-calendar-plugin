@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.0 (2016-08-xy)
+ - refactored index.php, global functions were marked as deprecated,
+
+
 ## 1.0.0   (2016-08-14)
  - an event in the calendar table links to "this event" page, instead of "the day" page,
  - a number of a day in the calendar table links to "the day" page,

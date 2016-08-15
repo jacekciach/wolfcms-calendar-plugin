@@ -42,7 +42,7 @@ ol li pre {
     <li>Name the subpage Events, Calendar, whatever you want.</li>
     <li>Change the behaviour to "<i>calendar</i>".</li>
     <li>Insert in "body" of the page:
-        <pre>&lt;?php showCalendar($this-&gt;slug); ?&gt;</pre>
+        <pre>&lt;?php CalendarPlugin::showCalendar($this-&gt;slug); ?&gt;</pre>
     </li>
     <li>Works!</li>
 </ol>

@@ -48,19 +48,19 @@ class Calendar {
             if (is_a($page_found, "Page"))
               $this->page = $page_found;
             /* A subpage is not found, so try to parse a date and then create an event's page */
-            elseif (validateDateString($slug, CALENDAR_SQL_DATE_FORMAT)) {
+            elseif (CalendarPlugin::validateDateString($slug, CALENDAR_SQL_DATE_FORMAT)) {
               $date = new DateTime($slug);
               $events = CalendarEvent::findEventsByDate($date);
               $this->page->title = $date->format(CALENDAR_DISPLAY_DATE_FORMAT);
               $this->beginCapture();
-              showEvents($events);
+              CalendarPlugin::showEvents($events);
               $this->endCapture();
             }
             /* Or maybe it's an event Id? */
             elseif (is_numeric($slug) && ($event = CalendarEvent::findById((int)$slug))) {
               $this->page->title = $event->getTitle();
               $this->beginCapture();
-              showEvent($event);
+              CalendarPlugin::showEvent($event);
               $this->endCapture();
             }
             else
@@ -76,7 +76,7 @@ class Calendar {
             $date->setDate($year, $month, 1);
 
             $this->beginCapture();
-            showCalendar($this->page->slug, $date);
+            CalendarPlugin::showCalendar($this->page->slug, $date);
             $this->endCapture();
             break;
 
