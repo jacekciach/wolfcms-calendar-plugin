@@ -20,7 +20,7 @@
 
 
 ## 0.4     (2014-07-01)
- - added a Dutch translation,
+ - added a Dutch translation (thanks to svanlaere),
  - minor changes to the documentation.
 
 

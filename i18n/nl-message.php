@@ -2,7 +2,7 @@
 
 /**
  * Dutch file for plugin calendar
- *
+ * @author svanlaere <webkluns@hotmail.com>
  */
 
 return array(
