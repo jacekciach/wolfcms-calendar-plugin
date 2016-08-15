@@ -2,6 +2,7 @@
 
 ## 1.1.0 (2016-08-xy)
  - refactored index.php, global functions were marked as deprecated,
+ - rewrote CSS into SCSS.
 
 
 ## 1.0.0   (2016-08-14)

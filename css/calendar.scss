@@ -1,0 +1,106 @@
+#calendar-plugin {
+  width: 100%;
+  margin-left: 0;
+  margin-bottom: 30px;
+
+  table {
+    width: 100%;
+  }
+
+  %table-cell {
+    padding: 4px 2px;
+    border: solid 1px black;
+  }
+
+  th {
+    @extend %table-cell;
+    font-weight: bold;
+    background-color: #bbbbbb;
+    width: 14%;
+    text-align: center;
+  }
+
+  td {
+    @extend %table-cell;
+    height: 4em;
+    text-align: left;
+    vertical-align: top;
+
+    a {
+      color: #000000;
+    }
+  }
+
+  .day-normal {}
+
+  .day-grayed {
+    color: #999999;
+    font-style: italic;
+  }
+
+  .saturday {
+    background-color: #dddddd;
+  }
+
+  .sunday {
+    background-color: #ffdddd;
+  }
+
+  .today {
+    background-color: #a0cc6a;
+    font-weight: bold;
+  }
+
+  .events-list {
+    margin: 5px 1px 0px 1px;
+    padding: 0px;
+
+    li {
+      list-style-type: none;
+      margin: 1px 0px;
+      padding: 0px 2px !important; // !important is needed to override WolfCMS's default CSS
+      font-size: 75%;
+      font-weight: normal;
+      border: 1px solid;
+      border-radius: 5px;
+
+      a {
+        color: darkblue;
+        display: block;
+        text-decoration: none;
+      }
+
+      &:hover {
+        background-color: #ffff00;
+      }
+    }
+  }
+
+  .calendar-table-header span {
+    font-size: 65%;
+    font-weight: normal;
+
+    &.prev {
+      margin-right: 10px;
+    }
+
+    &.next {
+      margin-left: 10px;
+    }
+  }
+
+  @each $index, $color in (
+    0: #ffffaa,
+    1: #ffaaff,
+    2: #aaffff,
+    3: #00ffaa,
+    4: #ffdd00,
+    5: #ffeeaa,
+    6: #aaff00
+  ) {
+    .event-color-#{$index} {
+      background-color: $color;
+    }
+  } // @each
+
+} // #calendar-plugin

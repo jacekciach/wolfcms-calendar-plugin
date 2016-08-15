@@ -64,7 +64,7 @@
 
       ?>
         <!-- BEGIN: Calendar header: navigation bar -->
-        <h3>
+        <h3 class="calendar-table-header">
 
           <span class="prev">
             <a href="<?php printf('%s/%s/%s', $this->base_url, $date_prev_month->format('Y'), $date_prev_month->format('m')); ?>">
@@ -195,7 +195,7 @@
 
 ?>
 
-<div id="calendar">
+<div id="calendar-plugin">
 
   <?php
 
