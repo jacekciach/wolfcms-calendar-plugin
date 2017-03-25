@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.1.1 (2017-03-25)
+ - fixed the translation of currently selected month in the calendar header
+
 ## 1.1.0 (2016-08-15)
  - refactored index.php, global functions were marked as deprecated,
  - rewrote CSS into SCSS.

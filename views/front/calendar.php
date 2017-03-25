@@ -72,7 +72,7 @@
             </a>
           </span>
 
-          <?php echo $this->date->format('F Y'); ?>
+          <?php echo $this->month_names[$this->date->format('n')].' '.$this->date->format('Y'); ?>
 
           <span class="next">
             <a href="<?php printf('%s/%s/%s', $this->base_url, $date_next_month->format('Y'), $date_next_month->format('m')); ?>">
