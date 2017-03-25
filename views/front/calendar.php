@@ -107,7 +107,7 @@
           <thead>
             <tr>
               <?php for ($col = 0; $col < self::COLS; ++$col): ?>
-                <th><?php echo substr($this->day_names[$col], 0, self::DAY_SHORT_NAME_LENGTH); ?></th>
+                <th><?php echo mb_substr($this->day_names[$col], 0, self::DAY_SHORT_NAME_LENGTH); ?></th>
               <?php endfor ?>
             </tr>
           <thead>
@@ -199,8 +199,13 @@
 
   <?php
 
+    $old_mb_internal_encoding = mb_internal_encoding();
+    mb_internal_encoding("UTF-8");
+
     $calendar = new CalendarTable($base_url, $date, $map);
     $calendar->display();
+
+    mb_internal_encoding($old_mb_internal_encoding);
 
   ?>
 

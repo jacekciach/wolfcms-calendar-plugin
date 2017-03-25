@@ -1,7 +1,12 @@
 # CHANGELOG
 
+## 1.1.2 (2017-03-25)
+ - fixed incorrect display of abbreviated UTF8 names of days of the week
+
+
 ## 1.1.1 (2017-03-25)
  - fixed the translation of currently selected month in the calendar header
+
 
 ## 1.1.0 (2016-08-15)
  - refactored index.php, global functions were marked as deprecated,
