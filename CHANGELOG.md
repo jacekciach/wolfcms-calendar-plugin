@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.3 (2017-03-25)
+ - fixed incorrect version number ;)
+
+
 ## 1.1.2 (2017-03-25)
  - fixed incorrect display of abbreviated UTF8 names of days of the week
 
