@@ -39,7 +39,7 @@ final class CalendarPlugin
       'id'                    => CALENDAR_ID,
       'title'                 => __('Calendar'),
       'description'           => __('Calendar'),
-      'version'               => '1.1.0',
+      'version'               => '1.1.3',
       'license'               => 'GPL',
       'author'                => 'Jacek Ciach',
       'require_wolf_version'  => '0.8.0',
